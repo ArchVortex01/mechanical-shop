@@ -48,13 +48,17 @@ class DashboardStatsView(APIView):
         recent_orders_list = [{
             'id': o.id, 'order_number': o.order_number, 'total_amount': float(o.total_amount),
             'order_status': o.order_status, 'payment_status': o.payment_status,
-            'created_at': o.created_at, 'customer_name': o.user.name, 'customer_email': o.user.email
+            'created_at': o.created_at,
+            'customer_name': o.user.name if o.user else 'Customer',
+            'customer_email': o.user.email if o.user else ''
         } for o in recent_orders]
         
         recent_bookings_list = [{
             'id': b.id, 'booking_ref': b.booking_ref, 'booking_date': b.booking_date,
             'booking_time': b.booking_time, 'status': b.status, 'estimated_cost': float(b.estimated_cost),
-            'service_name': b.service.name, 'customer_name': b.user.name, 'customer_phone': b.user.phone
+            'service_name': b.service.name if b.service else 'Workshop Service',
+            'customer_name': b.user.name if b.user else 'Customer',
+            'customer_phone': b.user.phone if b.user else ''
         } for b in recent_bookings]
         
         return send_success('Admin dashboard statistics retrieved', {

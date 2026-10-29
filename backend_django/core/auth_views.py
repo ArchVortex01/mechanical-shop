@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 from django.db import transaction
+from django.core.exceptions import ImproperlyConfigured
 from .models import User, Admin, Cart, Notification
 
 def send_success(message, data=None, status_code=status.HTTP_200_OK):
@@ -29,24 +30,38 @@ def generate_token(user, is_admin_table=False):
         'email': user.email,
         'role': 'ADMIN' if is_admin_table else user.role,
         'full_name': user.name,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7)
+        'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=7)
     }
-    secret = getattr(settings, 'JWT_SECRET', 'dev_jwt_secret_key_mahtomech_workshop_9876543210')
+    secret = getattr(settings, 'JWT_SECRET', None)
+    if not secret:
+        if not settings.DEBUG:
+            raise ImproperlyConfigured('JWT_SECRET must be configured in production.')
+        secret = 'dev_jwt_secret_key_mahtomech_workshop_9876543210'
     return jwt.encode(payload, secret, algorithm='HS256')
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
+
     @transaction.atomic
     def post(self, request):
         data = request.data
         email = data.get('email', '').lower().strip()
         phone = data.get('phone', '').strip()
         password = data.get('password')
-        full_name = data.get('full_name') or data.get('name') or ''
+        full_name = (data.get('full_name') or data.get('name') or '').strip()
+        
+        if not full_name:
+            return send_error('Full name is required.', status_code=status.HTTP_400_BAD_REQUEST)
+        if not email or '@' not in email or '.' not in email:
+            return send_error('A valid email address is required.', status_code=status.HTTP_400_BAD_REQUEST)
+        if not phone or len(phone) < 10:
+            return send_error('A valid phone number with at least 10 digits is required.', status_code=status.HTTP_400_BAD_REQUEST)
+        if not password or len(password) < 8:
+            return send_error('Password must be at least 8 characters long.', status_code=status.HTTP_400_BAD_REQUEST)
         
         if User.objects.filter(email=email).exists():
             return send_error('An account with this email address already exists.', status_code=status.HTTP_409_CONFLICT)
-        if phone and User.objects.filter(phone=phone).exists():
+        if User.objects.filter(phone=phone).exists():
             return send_error('An account with this phone number already exists.', status_code=status.HTTP_409_CONFLICT)
             
         user = User.objects.create_user(
@@ -58,9 +73,9 @@ class RegisterView(APIView):
         )
         
         # Create empty cart
-        Cart.objects.create(user=user)
+        Cart.objects.get_or_create(user=user)
         
-        # Create notification
+        # Create welcome notification
         Notification.objects.create(
             user=user,
             title='Welcome to MahtoMech!',
@@ -85,10 +100,14 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
+
     def post(self, request):
-        identifier = request.data.get('email', '').strip()
+        identifier = (request.data.get('email') or '').strip()
         password = request.data.get('password')
         
+        if not identifier or not password:
+            return send_error('Email or phone number and password are required.', status_code=status.HTTP_400_BAD_REQUEST)
+
         email = identifier.lower()
         if '@' not in identifier and identifier:
             phone_user = User.objects.filter(phone=identifier).first()
@@ -119,11 +138,14 @@ class LoginView(APIView):
 
 class AdminLoginView(APIView):
     permission_classes = [AllowAny]
+
     def post(self, request):
-        email = request.data.get('email', '').lower().strip()
+        email = (request.data.get('email') or '').lower().strip()
         password = request.data.get('password')
         
-        # Admin can be a User with role='ADMIN'
+        if not email or not password:
+            return send_error('Admin email and password are required.', status_code=status.HTTP_400_BAD_REQUEST)
+
         user = authenticate(username=email, password=password)
         
         if not user or user.role != 'ADMIN':

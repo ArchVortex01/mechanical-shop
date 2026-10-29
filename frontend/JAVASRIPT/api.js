@@ -1,20 +1,43 @@
 /**
  * MahtoMech - Central Frontend API Client
- * Seamlessly bridges the frontend UI and REST API backend
+ * Secure, resilient bridge between the frontend UI and REST API backend.
  */
 
 (function(window) {
     'use strict';
 
-    // Auto-detect base API URL: if served via Django server (port 8000), use '/api', else 'http://localhost:8000/api'
-    const isLocalDjango = window.location.port === '8000';
-    const API_BASE_URL = isLocalDjango ? '/api' : 'http://localhost:8000/api';
+    /**
+     * Resolve Base API URL:
+     * 1. window.MAHTOMECH_API_BASE_URL (Injected via deployment or page script)
+     * 2. LocalStorage override ('mm_api_base_url' for testing/staging)
+     * 3. Same-origin '/api' if hosted alongside Django
+     * 4. Default development fallback 'http://localhost:8000/api'
+     */
+    function resolveBaseUrl() {
+        if (window.MAHTOMECH_API_BASE_URL && typeof window.MAHTOMECH_API_BASE_URL === 'string') {
+            return window.MAHTOMECH_API_BASE_URL.replace(/\/+$/, '');
+        }
+        try {
+            const custom = localStorage.getItem('mm_api_base_url');
+            if (custom) return custom.replace(/\/+$/, '');
+        } catch (e) {}
 
+        if (window.location && window.location.protocol.startsWith('http')) {
+            // If served directly by Django on port 8000 or production domain
+            if (window.location.port === '8000' || window.location.port === '') {
+                return '/api';
+            }
+        }
+        return 'http://localhost:8000/api';
+    }
+
+    const API_BASE_URL = resolveBaseUrl();
     const TOKEN_KEY = 'mm_auth_token';
     const USER_KEY = 'mm_auth_user';
+    const DEFAULT_TIMEOUT_MS = 15000;
 
     /**
-     * Core HTTP Request Dispatcher
+     * Core HTTP Request Dispatcher with timeout & error handling
      */
     async function request(endpoint, options = {}) {
         const url = `${API_BASE_URL}${endpoint.startsWith('/') ? endpoint : '/' + endpoint}`;
@@ -29,9 +52,20 @@
             headers['Authorization'] = `Bearer ${token}`;
         }
 
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const timeoutMs = options.timeout || DEFAULT_TIMEOUT_MS;
+        let timeoutId = null;
+
+        if (controller) {
+            timeoutId = setTimeout(() => {
+                controller.abort();
+            }, timeoutMs);
+        }
+
         const config = {
             ...options,
-            headers
+            headers,
+            signal: controller ? controller.signal : undefined
         };
 
         if (options.body && typeof options.body === 'object' && !(options.body instanceof FormData)) {
@@ -40,10 +74,21 @@
 
         try {
             const response = await fetch(url, config);
+            if (timeoutId) clearTimeout(timeoutId);
+
             const data = await response.json().catch(() => ({}));
 
             if (!response.ok) {
-                const errorMessage = data.message || data.error || `HTTP Error ${response.status}: ${response.statusText}`;
+                // If token expired or unauthorized
+                if (response.status === 401 && token) {
+                    setToken(null);
+                    setUser(null);
+                    try {
+                        window.dispatchEvent(new CustomEvent('mm_auth_expired', { detail: { endpoint } }));
+                    } catch (e) {}
+                }
+
+                const errorMessage = data.message || data.error || (typeof data === 'string' ? data : `HTTP ${response.status}: ${response.statusText}`);
                 const error = new Error(errorMessage);
                 error.status = response.status;
                 error.data = data;
@@ -52,7 +97,13 @@
 
             return data;
         } catch (err) {
-            console.error(`[API Error] ${options.method || 'GET'} ${endpoint}:`, err);
+            if (timeoutId) clearTimeout(timeoutId);
+            if (err.name === 'AbortError') {
+                const timeoutErr = new Error(`Request timed out after ${timeoutMs / 1000} seconds. Please check your network.`);
+                timeoutErr.status = 408;
+                throw timeoutErr;
+            }
+            console.error(`[MahtoMech API] ${options.method || 'GET'} ${endpoint} failed:`, err);
             throw err;
         }
     }
@@ -110,7 +161,7 @@
         logout,
         request,
 
-        // Health
+        // Health check
         health: () => request('/health'),
 
         // Authentication
@@ -313,4 +364,3 @@
     window.MahtoMechAPI = MahtoMechAPI;
 
 })(window);
-

@@ -5,6 +5,9 @@ from rest_framework import exceptions
 from .models import User, Admin
 
 class JWTAuthentication(authentication.BaseAuthentication):
+    def authenticate_header(self, request):
+        return 'Bearer realm="api"'
+
     def authenticate(self, request):
         auth_header = request.headers.get('Authorization')
         
@@ -16,23 +19,30 @@ class JWTAuthentication(authentication.BaseAuthentication):
         except IndexError:
             return None
             
+        secret = getattr(settings, 'JWT_SECRET', None)
+        if not secret:
+            if not settings.DEBUG:
+                raise exceptions.AuthenticationFailed('Authentication secret is not configured.')
+            secret = 'dev_jwt_secret_key_mahtomech_workshop_9876543210'
+            
         try:
-            secret = getattr(settings, 'JWT_SECRET', 'dev_jwt_secret_key_mahtomech_workshop_9876543210')
             decoded = jwt.decode(token, secret, algorithms=['HS256'])
         except jwt.ExpiredSignatureError:
             raise exceptions.AuthenticationFailed('Authentication token has expired. Please login again.')
-        except jwt.DecodeError:
+        except jwt.InvalidTokenError:
             raise exceptions.AuthenticationFailed('Invalid authentication token.')
             
         is_admin_table = decoded.get('isAdminTable', False)
         user_id = decoded.get('id')
         
+        if not user_id:
+            raise exceptions.AuthenticationFailed('Malformed authentication token: user identifier missing.')
+        
         if is_admin_table:
             try:
-                admin = Admin.objects.get(id=user_id)
+                admin = Admin.objects.select_related('user').get(id=user_id)
                 if not admin.user.is_active:
                     raise exceptions.AuthenticationFailed('Admin account is deactivated.')
-                # Attach the user object connected to this admin
                 return (admin.user, token)
             except Admin.DoesNotExist:
                 raise exceptions.AuthenticationFailed('Admin account not found.')

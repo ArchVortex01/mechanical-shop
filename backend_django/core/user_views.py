@@ -46,6 +46,9 @@ class ChangePasswordView(APIView):
         
         if not check_password(old_password, user.password):
             return send_error('Incorrect current password', status_code=status.HTTP_400_BAD_REQUEST)
+
+        if not new_password or len(new_password) < 8:
+            return send_error('New password must be at least 8 characters long.', status_code=status.HTTP_400_BAD_REQUEST)
             
         user.password = make_password(new_password)
         user.save()

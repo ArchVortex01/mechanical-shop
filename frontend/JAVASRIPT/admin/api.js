@@ -3,7 +3,19 @@
    All backend communication goes through this file.
    ========================================================================== */
 
-const API_BASE_URL = window.location.port === '8000' ? '/api' : 'http://localhost:8000/api';
+const API_BASE_URL = window.MAHTOMECH_API_BASE_URL ||
+    (function() {
+        try {
+            const custom = localStorage.getItem('mm_api_base_url');
+            if (custom) return custom.replace(/\/+$/, '');
+        } catch (e) {}
+        if (window.location && window.location.protocol.startsWith('http')) {
+            if (window.location.port === '8000' || window.location.port === '') {
+                return '/api';
+            }
+        }
+        return 'http://localhost:8000/api';
+    })();
 
 // ── Auth helpers ─────────────────────────────────────────────────────────────
 function getToken() {
