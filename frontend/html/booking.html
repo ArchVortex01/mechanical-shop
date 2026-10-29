@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MahtoMech — Mechanical Shop & Vehicle Parts</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cog gear big-gear"></i>
+                    <i class="fas fa-cog gear small-gear"></i>
+                </div>
+
+                MAHTO<span>MECH</span>
+            </a>
+            <ul class="nav-link">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="buy-parts.html" >Buy Parts</a></li>
+                <li><a href="booking.html" class="active">Book Service</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-action">
+                <div class="search-box">
+                    <input type="text" placeholder="Search Components, fixes..." id="Searchbar">   
+                </div>
+                <a href="login.html" class="login-logo" title="Login"><i class="fas fa-user"></i></a>
+                <a href="Cart.html" class="cart-logo" title="Cart">🛒<span class="shopping-cart" id="Cardcount">0</span></a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="booking-hero">
+        <span class="tag">SCHEDULE A VISIT</span>
+        <h1>BOOK A <span>SERVICE</span></h1>
+        <p>Fill the form below and our team will confirm your appointment within 30 minutes</p>
+    </div>
+
+    <section class="booking-section">
+        <div class="booking-card">
+            <div class="booking-step">
+                <div class="step active" id="step1"><span class="step-num">1</span>Details</div>
+                <div class="step" id="step2"><span class="step-num">2</span>Vehicle</div>
+                <div class="step" id="step3"><span class="step-num">3</span>Schedule</div>
+            </div>
+
+            <h2>SERVICE <span>BOOKING</span></h2>
+            <p>Fill in your details — we'll handle the rest</p>
+
+            <form id="booking-form">
+                <div class="form-detail">
+                    <div class="form-group">
+                        <label>Full Name <span class="star">*</span></label>
+                        <input type="text" id="custName" placeholder="Enter Your Full Name" required>
+                        <span class="error-msg" id="err-name">Please Enter Your Name.</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number <span class="star">*</span></label>
+                        <input type="tel" id="custphone" placeholder="+91 XXXXX XXXXX" required>
+                        <span class="error-msg" id="err-phone">Enter a valid 10-digit number.</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="custemail" placeholder="Enter Your Email Id">
+                        <span class="error-msg" id="err-email">Enter a valid email address.</span>
+                    </div>
+                </div>
+
+
+                <div class="form-detail">
+                    <div class="form-group">
+                        <label>Vehicle Type <span class="star">*</span></label>
+                        <select id="VehicleType" required>
+                            <option value="">Select Vehicle Type</option>
+                            <option>Car</option>
+                            <option>Motorcycle</option>
+                            <option>Scooter</option>
+                            <option>Truck</option>
+                            <option>Tractor</option>
+                            <option>Bus</option>
+                            <option>Auto-Rickshaw</option>
+                            <option>JCB / Heavy Equipment</option>
+                        </select>
+                        <span class="error-msg" id="err-vtype">Please Select Vehicle Type.</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Vehicle Model <span class="star">*</span></label>
+                        <input type="text" id="vehicleModel" placeholder="e.g. Maruti Swift 2022" required>
+                        <span class="error-msg" id="err-vmodel">Please Enter Vehicle Model.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Registration No.</label>
+                    <input type="text" id="vehicleReg" placeholder="e.g. MH 02 AB 1234" style="text-transform:uppercase">
+                </div>
+
+                <div class="form-group">
+                    <label>Service Type <span class="star">*</span></label>
+                    <select id="serviceType" required>
+                        <option value="">Select Service Needed</option>
+                        <optgroup label="Engine Service">
+                            <option>Engine Repair</option>
+                            <option>Oil Change</option>
+                            <option>Engine Diagnostics</option>
+                            <option>Cooling System</option>
+                        </optgroup>
+                        <optgroup label="Lathe Work">
+                            <option>Metal Cutting</option>
+                            <option>Shaft Repair</option>
+                            <option>Mechanical Fabrication</option>
+                        </optgroup>
+                        <optgroup label="Welding">
+                            <option>Arc Welding</option>
+                            <option>Gas Welding</option>
+                            <option>TIG/Stainless Welding</option>
+                            <option>Body Welding</option>
+                        </optgroup>
+                        <optgroup label="Vehicle Service">
+                            <option>Full Service</option>
+                            <option>Minor Service</option>
+                            <option>Brake Service</option>
+                            <option>AC Service</option>
+                            <option>Suspension Repair</option>
+                            <option>Other Repair</option>
+                        </optgroup>
+                    </select>
+                    <span class="error-msg" id="err-stype">Please Select Service Type.</span>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Problem Description</label>
+                    <textarea id="problemDesc" placeholder="Describe the issue you are facing with your vehicle (optional but helpful)..."></textarea>
+                </div>
+
+                <div class="form-detail">
+                    <div class="form-group">
+                        <label>Preferred Date <span class="star">*</span></label>
+                        <input type="date" id="serviceDate" required>
+                        <span class="error-msg" id="err-date">Please Select a date.</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time Slot <span class="star">*</span></label>
+                        <div class="time-slots">
+                            <button type="button">8:00 AM</button>
+                            <button type="button">9:00 AM</button>
+                            <button type="button">10:00 AM</button>
+                            <button type="button">11:00 AM</button>
+                            <button type="button">12:00 PM</button>
+                            <button type="button">2:00 PM</button>
+                            <button type="button">3:00 PM</button>
+                            <button type="button">5:00 PM</button>
+                        </div>
+                        <span class="error-msg" id="err-time">Please select a time slot.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Vehicle Pickup Option</label>
+                    <div class="pickup-toggle">
+                        <div class="pickup-opt selected" data-pickup="self">🚗 I'll bring it myself</div>
+                        <div class="pickup-opt" data-pickup="pickup">🛻 Free pickup (₹2000+ orders)</div>
+                    </div>
+                    <input type="hidden" id="pickupVal" value="self">
+                </div>
+                <button type="submit" class="booking-submit">CONFIRM BOOKING</button>
+            </form>
+        </div>
+   
+
+
+        <div class="booking-sidebar">
+            <div class="booking-card-type">
+                <h3>⚡ QUICK FACTS</h4>
+                <ul>
+                    <li>Confirmation in 30 minutes</li>
+                    <li>Technician assigned same day</li>
+                    <li>WhatsApp updates throughout</li>
+                    <li>Free pickup above ₹2,000</li>
+                    <li>6-month repair warranty</li>
+                </ul>
+            </div>
+            <div class="booking-card-type">
+                <h3>📞 CALL US DIRECTLY</h4>
+                <p>Call: +91 98765 43210</p>
+                <p>Available Daily</p>
+            </div>
+            <div class="booking-card-type">
+                <h3>💳 PAYMENT OPTIONS</h4>
+                <ul>
+                    <li>Cash at workshop</li>
+                    <li>UPI / GPay / PhonePe</li>
+                    <li>Debit / Credit cards</li>
+                    <li>EMI (above ₹5,000)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+
+    <footer>
+        <div class="footer-bottom">
+            <p>© 2026 <span>MahtoMech</span>. All rights reserved. Made with 🔧 for car enthusiasts.</p>
+            <div class="payment-icons">
+                <div class="payment-icon">UPI</div>
+                <div class="payment-icon">VISA</div>
+                <div class="payment-icon">MC</div>
+                <div class="payment-icon">PayTM</div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <div class="modal-icon">✅</div>
+            <div class="modal-title">BOOKING <span style="color:#ff6600">CONFIRMED!</span></div>
+            <div class="modal-ref" id="bookingRef">#MP-000000</div>
+            <div class="modal-text" id="modalText">Your service booking has been received. Our team will confirm within 30 minutes via WhatsApp and SMS.</div>
+            <button class="modal-close" onclick="document.getElementById('successModal').classList.remove('show')">CLOSE</button>
+        </div>
+    </div>
+    
+    <script src="../JAVASRIPT/api.js"></script>
+    <script src="../JAVASRIPT/main.js" defer></script>
+    <script src="../JAVASRIPT/booking.js" defer></script>
+</body>
+</html>

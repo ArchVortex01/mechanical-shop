@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout — MahtoMech</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+    <nav id="nav-bar">
+        <a href="index.html" class="brand-logo">
+            <div class="logo-icon">
+                <i class="fas fa-cog gear big-gear"></i>
+                <i class="fas fa-cog gear small-gear"></i>
+            </div>
+            MAHTO<span>MECH</span>
+        </a>
+        <ul class="nav-link">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="buy-parts.html">Buy Parts</a></li>
+            <li><a href="booking.html">Book Service</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+            <div class="nav-action">
+                <div class="search-box">
+                    <input type="text" placeholder="Search..." id="Searchbar">
+                </div>
+                <a href="login.html" class="login-logo" title="Login"><i class="fas fa-user"></i></a>
+                <a href="Cart.html" class="cart-logo" title="Cart">🛒<span class="shopping-cart" id="Cardcount">0</span></a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+<div class="checkout-header">
+    <h1>SECURE <span>CHECKOUT</span></h1>
+    <p>Complete your purchase safely and securely.</p>
+</div>
+
+
+<div class="checkout-container">
+
+    <div class="checkout-main">
+
+        <div class="checkout-section">
+            <div class="checkout-progress-bar">
+                <div class="progress-circle active">1 <span>Shipping</span></div>
+                <div class="progress-circle">2 <span>Payment</span></div>
+                <div class="progress-circle">3 <span>Confirm</span></div>
+            </div>
+        </div>
+
+
+        <div class="checkout-section">
+            <h2>Shipping <span>Address</span></h2>
+
+            <form id="checkoutForm">
+                <div class="checkout-form-row">
+                    <div class="checkout-form-group">
+                        <label for="FullName">Full Name <span>*</span></label>
+                        <input type="text" id="fullName" placeholder="Enter Your Full Name" required>
+                    </div>
+
+                    <div class="checkout-form-group">
+                        <label for="email">Email Address <span>*</span></label>
+                        <input type="text" id="email" placeholder="Enter Your Email Id" required>
+                    </div>
+                </div>
+
+
+                <div class="checkout-form-row">
+                    <div class="checkout-form-group">
+                        <label for="phone">Phone Number <span>*</span></label>
+                        <input type="text" id="phone" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+
+
+                    <div class="checkout-form-group">
+                        <label for="country">Country <span>*</span></label>
+                        <select id="country" required>
+                            <option value="">Select Country</option>
+                            <option value="India" selected>India</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                        </select>
+                    </div>
+                </div>
+                
+
+                <div class="checkout-form-detail">
+                    <div class="checkout-form-group">
+                        <label for="address">Street Address <span>*</span></label>
+                        <input type="text" id="address" placeholder="Ramgarh College Gate" required>
+                    </div>
+                </div>
+
+                <div class="checkout-form-row">
+                    <div class="checkout-form-group">
+                        <label for="city">City <span>*</span></label>
+                        <input type="text" id="city" placeholder="City" required>
+                    </div>
+
+                    <div class="checkout-form-group">
+                        <label for="state">State <span>*</span></label>
+                        <input type="text" id="state" placeholder="State" required>
+                    </div>
+                </div>
+
+                <div class="checkout-form-row">
+                    <div class="checkout-form-group">
+                        <label for="pincode">Pin Code <span>*</span></label>
+                        <input type="text" id="pinCode" required>
+                    </div>
+
+                    <div class="checkout-form-group">
+                        <label for="landmark">Land Mark (Optional)</label>
+                        <input type="text" id="landmark">
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="billingsame" checked>
+                    <label for="billingsame">Billind Address Same as Shipping</label>
+                </div>
+
+
+                <div class="checkout-section">
+                    <h2><i class="fas fa-credit-card"></i>Payment <span>Method</span></h2>
+
+                    <div class="payment-methods">
+                        <div class="payment-method-selected" data-method="card">
+                            <span class="payment-name">Credit/Debit Card</span>
+                        </div>
+
+
+                    
+                        <div class="payment-method-selected" data-method="upi">
+                            <span class="payment-name">UPI</span>
+                        </div>
+
+                        <div class="payment-method-selected" data-method="netbanking">
+                            <span class="payment-name">Net Banking</span>
+                        </div>
+
+                        <div class="payment-method-selected">
+                            <span class="payment-name">Cash on Delivery</span>
+                        </div>
+                    </div>
+
+                    <div class="checkout-group">
+                        <input type="checkbox" id="termsAgree" required>
+                        <label for="termsAgree">I agree to the <a href="#">Terms & Conditions</a></label>
+                    </div>
+
+                    <button type="submit" class="checkout-button">
+                        <i class="fas fa-lock"></i> PROCEED TO PAYMENT
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="checkout-sidebar">
+        <h2>ORDER SUMMARY</h2>
+
+
+
+
+
+
+
+        <div class="checkout-sidebar-group">
+            <div class="promo-code">
+                <input type="text" id="promoCode" placeholder="Enter promo code">
+                <button type="button" onclick="applyPromo()">Apply</button>
+            </div>
+
+            <div class="checkout-summary-item">
+                <span class="item-name">Subtotal</span>
+                <span class="item-price" id="subtotal">₹0</span>
+            </div>
+
+            <div class="checkout-summary-item">
+                <span class="item-name">Shipping</span>
+                <span class="item-price" id="shipping">FREE</span>
+            </div>
+
+            <div class="checkout-summary-item">
+                <span class="item-name">Tax (18% GST)</span>
+                <span class="item-price" id="tax">₹0</span>
+            </div>
+
+            <div class="checkout-summary-item" id="discountRow">
+                <span class="item-name">Discount</span>
+                <span class="item-price" id="discount">-₹0</span>
+            </div>
+
+            <div class="checkout-summary-total">
+                <span class="total-label">TOTAL</span>
+                <span class="total-amount" id="totalAmount">₹0</span>
+            </div>
+            <div class="checkout-safe">
+                <p>✅ Secure SSL encryption</p>
+                <p>✅ 100% safe transactions</p>
+                <p>✅ Easy returns & refunds</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <div class="footer-bottom">
+        <p>© 2026 <span>MahtoMech</span>. All rights reserved. Made with 🔧 for car enthusiasts.</p>
+        <div class="payment-icons">
+            <div class="payment-icon">UPI</div>
+            <div class="payment-icon">VISA</div>
+            <div class="payment-icon">MC</div>
+            <div class="payment-icon">PayTM</div>
+        </div>
+    </div>
+</footer>
+
+<script src="../JAVASRIPT/api.js"></script>
+<script src="../JAVASRIPT/main.js" defer></script>
+<script src="../JAVASRIPT/checkout.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,585 @@
+/* ============================================================
+   BUY PARTS PAGE STYLES
+   ============================================================ */
+
+.buy-parts-hero {
+    padding: 130px 1.5rem 50px;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(255, 102, 0, .12), transparent 60%);
+}
+
+.buy-parts-hero .tag {
+    color: #ff6600;
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.buy-parts-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 900;
+    line-height: 1.15;
+}
+
+.buy-parts-hero h1 span {
+    color: #ff6600;
+}
+
+.buy-parts-hero p {
+    color: #94a3b8;
+    max-width: 700px;
+    margin: auto;
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    padding: 0 10px;
+}
+
+/* Category Sticky Sub-Nav */
+.vehicle-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 1.5rem;
+    background: #111217;
+    border-top: 1px solid #1f2330;
+    border-bottom: 1px solid #1f2330;
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+}
+
+.vehicle-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+.vehicle-navbar,
+.vehical-navbar {
+    background: #1a1c23;
+    border: 1px solid #2d313f;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.vehicle-navbar:hover,
+.vehical-navbar:hover {
+    background: #ff6600;
+    border-color: #ff6600;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Search and Filter Group */
+.buy-parts-group {
+    max-width: 1300px;
+    margin: 25px auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap; /* Keeps search bar, trending, all prices, and showing count in ONE line */
+}
+
+.buy-parts-search {
+    flex: 1;
+    min-width: 0;
+}
+
+#parts-Search {
+    width: 100%;
+    background: #1a1c23;
+    border: 1px solid #2d313f;
+    padding: 12px 18px;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.25s;
+    font-family: inherit;
+    text-overflow: ellipsis;
+}
+
+#parts-Search:focus {
+    border-color: #ff6600;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.15);
+}
+
+.shop-sort,
+.buy-parts-price {
+    background: #1a1c23;
+    border: 1px solid #2d313f;
+    color: #e2e8f0;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.25s;
+}
+
+.shop-sort:focus,
+.buy-parts-price:focus {
+    border-color: #ff6600;
+}
+
+.parts-count {
+    white-space: nowrap;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.parts-count strong {
+    color: #ff6600;
+}
+
+/* Vehicle Section Header */
+.vehicle-section {
+    max-width: 1300px;
+    margin: 50px auto;
+    padding: 0 1.5rem;
+}
+
+.vehicle-car,
+.vehicle-bike,
+.vehicle-truck,
+.vehicle-tractor,
+.vehicle-bus {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px 18px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.car-icon,
+.bike-icon,
+.truck-icon,
+.tractor-icon,
+.bus-icon {
+    grid-row: 1 / span 2;
+    font-size: 2.6rem;
+}
+
+.vehicle-section h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    font-weight: 800;
+    margin: 0;
+}
+
+.vehicle-section h2 span {
+    color: #ff6600;
+}
+
+.vehicle-car p,
+.vehicle-bike p,
+.vehicle-truck p,
+.vehicle-tractor p,
+.vehicle-bus p {
+    grid-column: 2;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.view-all {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: center;
+    color: #ff6600;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: transform 0.2s ease;
+}
+
+.view-all:hover {
+    transform: translateX(4px);
+    text-decoration: underline;
+}
+
+/* Category Filter Tags */
+.car-item,
+.bike-item,
+.truck-item,
+.tractor-item,
+.bus-item {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+}
+
+.car-item::-webkit-scrollbar,
+.bike-item::-webkit-scrollbar,
+.truck-item::-webkit-scrollbar,
+.tractor-item::-webkit-scrollbar,
+.bus-item::-webkit-scrollbar {
+    display: none;
+}
+
+.car-item button,
+.bike-item button,
+.truck-item button,
+.tractor-item button,
+.bus-item button {
+    background: #1a1c23;
+    border: 1px solid #2d313f;
+    color: #cbd5e1;
+    padding: 8px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.car-item button:hover,
+.bike-item button:hover,
+.truck-item button:hover,
+.tractor-item button:hover,
+.bus-item button:hover {
+    background: #ff6600;
+    border-color: #ff6600;
+    color: white;
+}
+
+/* Product Card Grid */
+.buy-car-parts,
+.buy-bike-parts,
+.buy-truck-parts,
+.buy-tractor-parts,
+.buy-bus-parts {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+
+.car-card,
+.bike-card,
+.truck-card,
+.tractor-card,
+.bus-card {
+    background: #111217;
+    border: 1px solid #1f2330;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.car-card:hover,
+.bike-card:hover,
+.truck-card:hover,
+.tractor-card:hover,
+.bus-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff6600;
+    box-shadow: 0 12px 30px rgba(255, 102, 0, .18);
+}
+
+.card-image {
+    height: 200px;
+    background: #1a1c23;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 15px;
+}
+
+.card-image span {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff6600;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.card-body {
+    padding: 18px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 10px;
+    align-content: start;
+}
+
+.card-body h3,
+.card-body p,
+.card-body span,
+.card-body h4 {
+    grid-column: 1 / -1;
+}
+
+.card-body h3 {
+    color: #fff;
+    margin-bottom: 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.card-body p {
+    color: #94a3b8;
+    font-size: .85rem;
+    min-height: 40px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.card-body span {
+    color: #fbbf24;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.card-body h4 {
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.card-body del {
+    color: #64748b;
+    margin-left: 6px;
+    font-size: .85rem;
+    font-weight: 400;
+}
+
+.card-body button {
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.88rem;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    width: 100%;
+}
+
+.card-body button:first-of-type {
+    background: #1a1c23;
+    color: white;
+    border: 1px solid #2d313f;
+}
+
+.card-body button:last-of-type {
+    background: #ff6600;
+    color: white;
+    border: 1px solid #ff6600;
+}
+
+.card-body button:hover {
+    opacity: .9;
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================================ */
+
+@media (max-width: 1200px) {
+    .buy-car-parts,
+    .buy-bike-parts,
+    .buy-truck-parts,
+    .buy-tractor-parts,
+    .buy-bus-parts {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .buy-car-parts,
+    .buy-bike-parts,
+    .buy-truck-parts,
+    .buy-tractor-parts,
+    .buy-bus-parts {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+}
+
+@media (max-width: 820px) {
+    .vehicle-nav {
+        top: 70px;
+        justify-content: flex-start;
+        padding: 12px 1rem;
+    }
+
+    .buy-parts-group {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0 1rem;
+    }
+
+    .buy-parts-group::-webkit-scrollbar {
+        display: none;
+    }
+
+    .buy-parts-search {
+        flex: 1 1 auto;
+        min-width: 140px;
+    }
+
+    #parts-Search {
+        padding: 10px 12px;
+        font-size: 0.88rem;
+    }
+
+    .shop-sort,
+    .buy-parts-price {
+        padding: 10px 10px;
+        font-size: 0.84rem;
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 0;
+    }
+
+    .parts-count {
+        font-size: 0.84rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .vehicle-car,
+    .vehicle-bike,
+    .vehicle-truck,
+    .vehicle-tractor,
+    .vehicle-bus {
+        grid-template-columns: auto 1fr;
+    }
+
+    .view-all {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .buy-parts-hero {
+        padding: 105px 1rem 35px;
+    }
+
+    .buy-car-parts,
+    .buy-bike-parts,
+    .buy-truck-parts,
+    .buy-tractor-parts,
+    .buy-bus-parts {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .card-image {
+        height: 175px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vehicle-nav {
+        top: 65px;
+        gap: 8px;
+    }
+
+    .vehicle-navbar,
+    .vehical-navbar {
+        padding: 8px 14px;
+        font-size: 0.82rem;
+    }
+
+    .buy-parts-group {
+        gap: 6px;
+        padding: 0 0.75rem;
+    }
+
+    .buy-parts-search {
+        min-width: 110px;
+    }
+
+    #parts-Search {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .shop-sort,
+    .buy-parts-price {
+        padding: 8px 6px;
+        font-size: 0.76rem;
+    }
+
+    .parts-count {
+        font-size: 0.76rem;
+    }
+
+    .buy-car-parts,
+    .buy-bike-parts,
+    .buy-truck-parts,
+    .buy-tractor-parts,
+    .buy-bus-parts {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card-image {
+        height: 190px;
+    }
+
+    .car-icon,
+    .bike-icon,
+    .truck-icon,
+    .tractor-icon,
+    .bus-icon {
+        font-size: 2rem;
+    }
+
+    .vehicle-section h2 {
+        font-size: 1.4rem;
+    }
+}

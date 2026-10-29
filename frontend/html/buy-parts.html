@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MahtoMech — Mechanical Shop & Vehicle Parts</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/buy-part.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cog gear big-gear"></i>
+                    <i class="fas fa-cog gear small-gear"></i>
+                </div>
+
+                MAHTO<span>MECH</span>
+            </a>
+            <ul class="nav-link">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="buy-parts.html" class="active">Buy Parts</a></li>
+                <li><a href="booking.html">Book Service</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-action">
+                <div class="search-box">
+                    <input type="text" placeholder="Search Components, fixes..." id="Searchbar">   
+                </div>
+                <a href="login.html" class="login-logo" title="Login"><i class="fas fa-user"></i></a>
+                <a href="Cart.html" class="cart-logo" title="Cart">🛒<span class="shopping-cart" id="Cardcount">0</span></a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    
+    <section class="buy-parts-hero">
+        <span class="tag">SPARE PARTS STORE</span>
+        <h1>VEHICLE <span>PARTS</span></h1>
+        <p>Genuine and aftermarket parts for all vehicles — cars, bikes, trucks, tractors, and more.</p>
+    </section>
+
+    <nav class="vehicle-nav">
+        <a href="#car" class="vehicle-navbar">🚗 <span>Car Parts</span></a>
+        <a href="#bike" class="vehicle-navbar">🏍️ <span>Bike Parts</span></a>
+        <a href="#truck" class="vehicle-navbar">🚛 <span>Truck Parts</span></a>
+        <a href="#tractor" class="vehical-navbar">🚜 <span>Tractor Parts</span></a>
+        <a href="#bus" class="vehical-navbar">🚌 <span>Bus Parts</span></a>
+        <a href="#other" class="vehicle-navbar">⚡ <span>Other Vehicles</span></a>
+    </nav>
+    
+    <div class="buy-parts-group">
+        <div class="buy-parts-search">
+            <input type="text" placeholder="Search parts, categories..." id="parts-Search">
+        </div>
+        <select class="shop-sort" id="sortBy">
+            <option value="trending">Trending</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+            <option value="newest">Newest</option>
+        </select>
+        <select class="buy-parts-price">
+            <option value="">All Prices</option>
+            <option value="0-500">₹0 - ₹500</option>
+            <option value="500-2000">₹500 - ₹2,000</option>
+            <option value="2000-5000">₹2,000 - ₹5,000</option>
+            <option value="5000+">₹5,000+</option>
+        </select>
+        <span class="parts-count">Showing <strong>0</strong> Parts</span>
+    </div>
+    
+    <section class="vehicle-section" id="car">
+        <div class="vehicle-car">
+            <span class="car-icon">🚗</span>
+            <h2>CAR <span>PARTS</span></h2>
+            <p>Engine • Brake • Suspension • Electrical</p>
+            <a href="car-part.html" class="view-all">VIEW ALL PARTS →</a>
+        </div>
+        
+        <div class="car-item">
+            <button>All</button>
+            <button>Engine Parts</button>
+            <button>Brake System</button>
+            <button>Suspension</button>
+            <button>Electrical</button>
+            <button>AC Parts</button>
+        </div>
+        <div class="buy-car-parts">
+            <div class="car-card">
+                <div class="card-image">
+                    <img src="../image/Car_Engine_oil_Filter.webp" alt="">
+                    <span>HOT</span>
+                </div>
+                <div class="card-body">
+                    <h3>Engine Oil Filter (Top Quality)</h3>
+                    <p>Compatible with most cars</p>
+                    <span>★★★★★ (234)</span>
+                    <h4>₹450 <del>₹650</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="car-card">
+                <div class="card-image">
+                    <img src="../image/Car_Brake_Pads.webp" alt="">
+                    <span>SALE</span>
+                </div>
+                <div class="card-body">
+                    <h3>Brake Pads (Set of 4)</h3>
+                    <p>High-performance friction</p>
+                    <span>★★★★☆ (189)</span>
+                    <h4>₹1,299 <del>₹1,899</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="car-card">
+                <div class="card-image">
+                    <img src="../image/Car Battery 60Ah SMF.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Car Battery 60Ah SMF</h3>
+                    <p>3-year warranty</p>
+                    <span>★★★★★ (412)</span>
+                    <h4>₹3,499 <del>₹4,299</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="car-card">
+                <div class="card-image">
+                    <img src="../image/Car_LED_Headlight_Bulbs_Pair1.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>LED Headlight Bulbs Pair</h3>
+                    <p>6000K bright white</p>
+                    <span>★★★★★ (567)</span>
+                    <h4>₹899 <del>₹1,299</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="car-card">
+                <div class="card-image">
+                    <img src="../image/car_alt.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Alternator Assembly</h3>
+                    <p>100A premium quality</p>
+                    <span>★★★★☆ (93)</span>
+                    <h4>₹5,899 <del>₹7,499</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="vehicle-section" id="bike">
+        <div class="vehicle-bike">
+            <span class="bike-icon">🏍️</span>
+            <h2>BIKE <span>PARTS</span></h2>
+            <p>Chain • Sprocket • Brake • Clutch</p>
+            <a href="bike-parts.html" class="view-all">VIEW ALL PARTS →</a>
+        </div>
+
+        <div class="bike-item">
+            <button>ALL</button>
+            <button>Engine</button>
+            <button>Chain & Drive</button>
+            <button>Brake</button>
+            <button>Suspension</button>
+            <button>Accessories</button>
+        </div>
+        <div class="buy-bike-parts">
+            <div class="bike-card">
+                <div class="card-image">
+                    <img src="../image/Bike_Premium_Bike_Chain_Kit.webp" alt="">
+                </div>
+                <div class="card-body">
+                    <h3>Premium Bike Chain Kit</h3>
+                    <p>With sprockets included</p>
+                    <span>★★★★★ (156)</span>
+                    <h4>₹1,199 <del>₹1,599</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bike-card">
+                <div class="card-image">
+                    <img src="../image/Bike_High-Grip_Bike_Tyres (Pair).webp" alt="">
+                    <span>HOT</span>
+                </div>
+                <div class="card-body">
+                    <h3>High-Grip Bike Tyres (Pair)</h3>
+                    <p>MRF / Ceat / Apollo</p>
+                    <span>★★★★☆ (234)</span>
+                    <h4>₹2,499 <del>₹3,299</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bike-card">
+                <div class="card-image">
+                    <img src="../image/Bike_Brake_Pads_&_Discs.webp" alt="">
+                </div>
+                <div class="card-body">
+                    <h3>Bike Brake Pads & Discs</h3>
+                    <p>Front + rear set</p>
+                    <span>★★★★★ (412)</span>
+                    <h4>₹899 <del>₹1,299</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bike-card">
+                <div class="card-image">
+                    <img src="../image/Bike_Clutch_Plate_Kit.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Bike Clutch Plate Kit</h3>
+                    <p>Premium friction material</p>
+                    <span>★★★★★ (178)</span>
+                    <h4>₹749 <del>₹999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bike-card">
+                <div class="card-image">
+                    <img src="../image/Bike_Front_Suspension_Fork_Assembly.webp" alt="">
+                    <span>SALE</span>
+                </div>
+                <div class="card-body">
+                    <h3>Front Suspension Fork Assembly</h3>
+                    <p>Smooth shock absorption for enhanced riding comfort and stability.</p>
+                    <span>★★★★★(512)</span>
+                    <h4>₹2,499 <del>₹3,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="vehicle-section" id="truck">
+        <div class="vehicle-truck">
+            <span class="truck-icon">🚛</span>
+            <h2>TRUCK <span>PARTS</span></h2>
+            <p>Heavy-duty commercial components</p>
+            <a href="truck-parts.html" class="view-all">VIEW ALL PARTS →</a>
+        </div>
+        
+        <div class="truck-item">
+            <button>ALL</button>
+            <button>Engine</button>
+            <button>Gears</button>
+            <button>Body & Cabin</button>
+            <button>Air Brake System</button>
+            <button>Electrical</button>
+        </div>
+        <div class="buy-truck-parts">
+            <div class="truck-card">
+                <div class="card-image">
+                    <img src="../image/Truck_Turbocharger_Assembly.webp" alt="">
+                    <span>SALE</span>
+                </div>
+                <div class="card-body">
+                    <h3>Turbocharger Assembly</h3>
+                    <p>Boosts engine power and fuel efficiency</p>
+                    <span>★★★★☆ (388)</span>
+                    <h4>₹21,999 <del>₹24,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="truck-card">
+                <div class="card-image">
+                    <img src="../image/Truck_Fuel_Injection_Pump.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Fuel Injection Pump</h3>
+                    <p>Ensures precise fuel delivery for optimal performance.</p>
+                    <span>★★★★★ (943)</span>
+                    <h4>₹15,499 <del>₹18,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="truck-card">
+                <div class="card-image">
+                    <img src="../image/Truck_Engine_Oil_Filter.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Engine Oil Filter</h3>
+                    <p>Protects the engine by filtering contaminants.</p>
+                    <span>★★★★☆ (723)</span>
+                    <h4>₹699 <del>₹899</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="truck-card">
+                <div class="card-image">
+                    <img src="../image/Truck_Clutch_Plate_Kit.webp" alt="">
+                    <span>HOT</span>
+                </div>
+                <div class="card-body">
+                    <h3>Clutch Plate Kit</h3>
+                    <p>Provides smooth gear shifting and power transfer.</p>
+                    <span>★★★★★ (871)</span>
+                    <h4>₹6,999 <del>₹7,499</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="truck-card">
+                <div class="card-image">
+                    <img src="../image/Truck_Differential_Assembly.webp" alt="">
+                    <span>SALE</span>
+                </div>
+                <div class="card-body">
+                    <h3>Differential Assembly</h3>
+                    <p>Delivers balanced power to the drive wheels.</p>
+                    <span>★★★★☆ (643)</span>
+                    <h4>₹29,999 <del>₹34,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="vehicle-section" id="tractor">
+        <div class="vehicle-tractor">
+            <span class="tractor-icon">🚜</span>
+            <h2>TRACTOR <span>PARTS</span></h2>
+            <p>Agricultural machinery components</p>
+             <a href="tractor-parts.html" class="view-all">VIEW ALL PARTS →</a>
+        </div>
+       
+        <div class="tractor-item">
+            <button>ALL</button>
+            <button>Engine</button>
+            <button>Hydraulics</button>
+            <button>Transmission & PTO</button>
+            <button>Steering & Suspension</button>
+            <button>Electrical</button>
+        </div>
+        <div class="buy-tractor-parts">
+            <div class="tractor-card">
+                <div class="card-image">
+                    <img src="../image/Tractor_Clutch_Plate.webp" alt="">
+                    <span>SALE</span>
+                </div>
+                <div class="card-body">
+                    <h3>Tractor Clutch Plate</h3>
+                    <p>Ensures smooth gear shifting and power transmission</p>
+                    <span>★★★★☆ (269)</span>
+                    <h4>₹3,999 <del>₹4,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="tractor-card">
+                <div class="card-image">
+                    <img src="../image/Tractor_Piston_Kit.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Tractor Piston Kit</h3>
+                    <p>Improves engine efficiency and performance</p>
+                    <span>★★★★☆ (421)</span>
+                    <h4>₹2,999 <del>₹3,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="tractor-card">
+                <div class="card-image">
+                    <img src="../image/Tractor_Gear_Box_Parts.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Tractor Gear Box Parts</h3>
+                    <p>Provides reliable power delivery and speed control</p>
+                    <span>★★★★★ (421)</span>
+                    <h4>₹7,999 <del>₹9,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="tractor-card">
+                <div class="card-image">
+                    <img src="../image/Tractor_Hydraulic_Pump.webp" alt="">
+                    <span>HOT</span>
+                </div>
+                <div class="card-body">
+                    <h3>Hydraulic Pump</h3>
+                    <p>Powers lifting and hydraulic operations</p>
+                    <span>★★★★★ (229)</span>
+                    <h4>₹8,999 <del>₹9,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="tractor-card">
+                <div class="card-image">
+                    <img src="../image/Tractor_Engine_Start_Motor.webp" alt="">
+                </div>
+                <div class="card-body">
+                    <h3>Engine Start Motor</h3>
+                    <p>Delivers dependable engine starting</p>
+                    <span>★★★★★ (754)</span>
+                    <h4>₹7,999 <del>₹9,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="vehicle-section" id="bus">
+        <div class="vehicle-bus">
+            <span class="bus-icon">🚌</span>
+            <h2>BUS <span>PARTS</span></h2>
+            <p>Premium bus parts designed to ensure passenger safety, comfort, and reliable transportation</p>
+            <a href="bus-parts.html" class="view-all">VIEW ALL PARTS →</a>
+        </div>
+        
+        <div class="bus-item">
+            <button>ALL</button>
+            <button>Engine</button>
+            <button>Brake System</button>
+            <button>Transmission</button>
+            <button>Steering & Suspension</button>
+            <button>Electrical</button>
+        </div>
+        <div class="buy-bus-parts">
+            <div class="bus-card">
+                <div class="card-image">
+                    <img src="../image/Bus_Turbocharger_Assembly.webp" alt="">
+                    <span>SALE</span>
+                </div>
+                <div class="card-body">
+                    <h3>Turbocharger Assembly</h3>
+                    <p>Enhances engine power and fuel efficiency</p>
+                    <span>★★★★☆ (786)</span>
+                    <h4>₹22,999 <del>₹26,999</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bus-card">
+                <div class="card-image">
+                    <img src="../image/Bus_Fuel_Injector.webp" alt="">
+                    <span>HOT</span>
+                </div>
+                <div class="card-body">
+                    <h3>Fuel Injector</h3>
+                    <p>Ensures efficient fuel delivery and combustion</p>
+                    <span>★★★★★ (345)</span>
+                    <h4>₹4,499 <del>₹5,499</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bus-card">
+                <div class="card-image">
+                    <img src="../image/Bus_Air_Brake_Chamber.webp" alt="">
+                </div>
+                <div class="card-body">
+                    <h3>Air Brake Chamber</h3>
+                    <p>Converts air pressure into braking force</p>
+                    <span>★★★★☆ (698)</span>
+                    <h4>₹2,499 <del>₹3,499</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bus-card">
+                <div class="card-image">
+                    <img src="../image/Bus_Leaf_Spring_Assembly.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Leaf Spring Assembly</h3>
+                    <p>Supports heavy loads and ride comfort</p>
+                    <span>★★★★☆ (213)</span>
+                    <h4>₹11,499 <del>₹13,499</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+            <div class="bus-card">
+                <div class="card-image">
+                    <img src="../image/Bus_Differential_Assembly.webp" alt="">
+                    <span>NEW</span>
+                </div>
+                <div class="card-body">
+                    <h3>Differential Assembly</h3>
+                    <p>Distributes power evenly to drive wheels</p>
+                    <span>★★★★★ (543)</span>
+                    <h4>₹31,999 <del>₹36,499</del></h4>
+                    <button>🛒 CART</button>
+                    <button>BUY</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>© 2026 <span>MahtoMech</span>. All rights reserved. Made with 🔧 for car enthusiasts.</p>
+            <div class="payment-icons">
+                <div class="payment-icon">UPI</div>
+                <div class="payment-icon">VISA</div>
+                <div class="payment-icon">MC</div>
+                <div class="payment-icon">PayTM</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../JAVASRIPT/api.js"></script>
+    <script src="../JAVASRIPT/main.js" defer></script>
+    <script src="../JAVASRIPT/buy-parts.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MahtoMech — Mechanical Shop & Vehicle Parts</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cog gear big-gear"></i>
+                    <i class="fas fa-cog gear small-gear"></i>
+                </div>
+
+                MAHTO<span>MECH</span>
+            </a>
+            <ul class="nav-link">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="buy-parts.html">Buy Parts</a></li>
+                <li><a href="booking.html">Book Service</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-action">
+                <div class="search-box">
+                    <input type="text" placeholder="Search Components, fixes..." id="Searchbar">   
+                </div>
+                <a href="login.html" class="login-logo" title="Login"><i class="fas fa-user"></i></a>
+                <a href="Cart.html" class="cart-logo" title="Cart">🛒<span class="shopping-cart" id="Cardcount">0</span></a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="line1">PRECISION MECHANICS</span>
+                <span class="line2">& PARTS</span>
+            </h1>
+            <p class="hero-sub">Professional vehicle service · Genuine spare parts · Expert technicians</p>
+            <div class="hero-serach">
+                <input type="text" placeholder="Search parts, services, vehicles..." id="heroSearch">
+                <button onclick="handleSearch()">SEARCH</button>
+            </div>
+            <div class="hero-cards">
+                <a href="service.html" class="hero-card">
+                    <span class="card-icon">⚙️</span>
+                    <h3>VEHICLE SERVICE</h3>
+                    <p>Engine repair, oil change, diagnostics, welding, lathe work & all mechanical services.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="buy-parts.html" class="hero-card">
+                    <span class="card-cart-icon">🛒</span>
+                    <h3>BUY PARTS</h3>
+                    <p>Genuine & aftermarket parts for cars, bikes, trucks, tractors and all vehicles.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="footer-bottom">
+            <p>© 2026 <span>MahtoMech</span>. All rights reserved. Made with 🔧 for car enthusiasts.</p>
+            <div class="payment-icons">
+            <div class="payment-icon">UPI</div>
+            <div class="payment-icon">VISA</div>
+            <div class="payment-icon">MC</div>
+            <div class="payment-icon">PayTM</div>
+        </div>
+        </div>
+    </footer>
+   
+    
+    <script src="../JAVASRIPT/api.js"></script>
+    <script src="../JAVASRIPT/main.js" defer></script>
+    <script src="../JAVASRIPT/index.js" defer></script>
+</body>
+</html>

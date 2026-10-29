@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login — MahtoMech</title>
+    <link rel="stylesheet" href="../CSS/admin/admin-style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: var(--bg-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-page {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-brand {
+            text-align: center;
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-brand .brand-logo {
+            margin-bottom: 8px;
+            font-size: 1.8rem;
+        }
+
+        .login-brand h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .login-brand h1 span {
+            color: var(--primary);
+        }
+
+        .login-brand p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-xl);
+            padding: 36px;
+            box-shadow: var(--shadow-popover);
+        }
+
+        .login-card h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .login-card .subtitle {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .input-wrapper .toggle-pass {
+            left: auto;
+            right: 14px;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .input-wrapper .toggle-pass:hover {
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        .form-control::placeholder {
+            color: var(--text-disabled);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 13px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-login:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.45);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .error-msg {
+            display: none;
+            background: var(--status-danger-bg);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: var(--status-danger);
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            font-size: 0.86rem;
+            margin-bottom: 20px;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .error-msg.show {
+            display: flex;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--text-disabled);
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="login-brand">
+            <a href="admin-login.html" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cog gear big-gear"></i>
+                    <i class="fas fa-cog gear small-gear"></i>
+                </div>
+                MAHTO<span>MECH</span>
+            </a>
+            <p>Admin Control Panel</p>
+        </div>
+
+        <div class="login-card">
+            <h2>Welcome Back, Admin</h2>
+            <p class="subtitle">Sign in to manage MahtoMech operations</p>
+
+            <div class="error-msg" id="errorMsg">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorText">Invalid credentials</span>
+            </div>
+
+            <form id="loginForm" novalidate>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" class="form-control" placeholder="admin@mahtomech.com"
+                            autocomplete="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" class="form-control" placeholder="Enter your password"
+                            autocomplete="current-password" required>
+                        <i class="fas fa-eye toggle-pass" id="togglePass"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span id="loginBtnText">Sign In</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="login-footer">
+            &copy; 2026 MahtoMech · Secure Admin Access
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = window.location.port === '8000' ? '/api' : 'http://localhost:8000/api';
+
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginBtnText = document.getElementById('loginBtnText');
+        const errorMsg = document.getElementById('errorMsg');
+        const errorText = document.getElementById('errorText');
+        const togglePass = document.getElementById('togglePass');
+        const passwordInput = document.getElementById('password');
+
+        // Redirect if already logged in
+        if (localStorage.getItem('adminToken')) {
+            window.location.href = 'admin-panel.html';
+        }
+
+        togglePass.addEventListener('click', () => {
+            const isPass = passwordInput.type === 'password';
+            passwordInput.type = isPass ? 'text' : 'password';
+            togglePass.classList.toggle('fa-eye', !isPass);
+            togglePass.classList.toggle('fa-eye-slash', isPass);
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) { showError('Please enter your email and password.'); return; }
+
+            setLoading(true);
+            hideError();
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/auth/admin/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    localStorage.setItem('adminToken', data.data.token);
+                    localStorage.setItem('adminUser', JSON.stringify(data.data.admin || data.data.user));
+                    window.location.href = 'admin-panel.html';
+                } else {
+                    showError(data.message || 'Invalid email or password.');
+                }
+            } catch (err) {
+                showError('Cannot connect to server. Make sure the backend is running.');
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        function setLoading(on) {
+            loginBtn.disabled = on;
+            loginBtnText.textContent = on ? 'Signing in...' : 'Sign In';
+            const icon = loginBtn.querySelector('i');
+            if (on) { icon.className = ''; icon.innerHTML = '<span class="spinner"></span>'; }
+            else { icon.className = 'fas fa-sign-in-alt'; icon.innerHTML = ''; }
+        }
+        function showError(msg) { errorText.textContent = msg; errorMsg.classList.add('show'); }
+        function hideError() { errorMsg.classList.remove('show'); }
+    </script>
+</body>
+
+</html>

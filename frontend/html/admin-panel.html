@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — MahtoMech</title>
+    <link rel="stylesheet" href="../CSS/admin/admin-style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/admin/admin-components.css">
+    <link rel="stylesheet" href="../CSS/admin/admin-responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Sidebar Backdrop (mobile) -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <div class="admin-layout">
+
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header" style="padding: 10px 20px;">
+            <a href="admin-panel.html" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cog gear big-gear"></i>
+                    <i class="fas fa-cog gear small-gear"></i>
+                </div>
+                MAHTO<span>MECH</span>
+            </a>
+        </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Main</div>
+                <a href="#" class="nav-link active" data-section="dashboard">
+                    <span class="nav-icon"><i class="fas fa-tachometer-alt"></i></span>
+                    <span>Dashboard</span>
+                </a>
+
+                <div class="nav-section-title">E-Commerce</div>
+                <a href="#" class="nav-link" data-section="products">
+                    <span class="nav-icon"><i class="fas fa-boxes"></i></span>
+                    <span>Products</span>
+                </a>
+                <a href="#" class="nav-link" data-section="categories">
+                    <span class="nav-icon"><i class="fas fa-tags"></i></span>
+                    <span>Categories</span>
+                </a>
+                <a href="#" class="nav-link" data-section="inventory">
+                    <span class="nav-icon"><i class="fas fa-warehouse"></i></span>
+                    <span>Inventory</span>
+                    <span class="nav-badge" id="lowStockBadge" style="display:none">!</span>
+                </a>
+                <a href="#" class="nav-link" data-section="orders">
+                    <span class="nav-icon"><i class="fas fa-shopping-bag"></i></span>
+                    <span>Orders</span>
+                </a>
+
+                <div class="nav-section-title">Workshop</div>
+                <a href="#" class="nav-link" data-section="services">
+                    <span class="nav-icon"><i class="fas fa-wrench"></i></span>
+                    <span>Services</span>
+                </a>
+                <a href="#" class="nav-link" data-section="bookings">
+                    <span class="nav-icon"><i class="fas fa-calendar-check"></i></span>
+                    <span>Bookings</span>
+                </a>
+                <a href="#" class="nav-link" data-section="vehicles">
+                    <span class="nav-icon"><i class="fas fa-car"></i></span>
+                    <span>Vehicles</span>
+                </a>
+
+                <div class="nav-section-title">Finance</div>
+                <a href="#" class="nav-link" data-section="payments">
+                    <span class="nav-icon"><i class="fas fa-credit-card"></i></span>
+                    <span>Payments</span>
+                </a>
+                <a href="#" class="nav-link" data-section="reports">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span>Reports</span>
+                </a>
+
+                <div class="nav-section-title">People</div>
+                <a href="#" class="nav-link" data-section="users">
+                    <span class="nav-icon"><i class="fas fa-users"></i></span>
+                    <span>Users</span>
+                </a>
+                <a href="#" class="nav-link" data-section="messages">
+                    <span class="nav-icon"><i class="fas fa-envelope"></i></span>
+                    <span>Messages</span>
+                    <span class="nav-badge" id="msgBadge" style="display:none">•</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="admin-avatar" id="adminAvatar">A</div>
+                <div class="admin-meta">
+                    <div class="admin-name" id="adminName">Admin</div>
+                    <div class="admin-role">Super Admin</div>
+                </div>
+                <button class="btn-logout-icon" id="logoutBtn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- ===================== MAIN WRAPPER ===================== -->
+        <div class="main-wrapper">
+
+            <!-- TOP HEADER -->
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggleBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title-area">
+                        <h1 id="pageTitle">Dashboard</h1>
+                        <p id="pageSubtitle">Welcome back — here's what's happening today</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="header-search">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search..." id="globalSearch">
+                    </div>
+                    <div class="header-actions">
+                        <button class="action-btn" id="refreshBtn" title="Refresh">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                        <button class="action-btn" title="Notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge-dot"></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTENT BODY -->
+            <main class="content-body">
+
+                <!-- ========== DASHBOARD ========== -->
+                <section class="view-section active" id="section-dashboard">
+                    <div class="stat-grid" id="dashboardStats">
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-orange"><i class="fas fa-rupee-sign"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Revenue</div>
+                                <div class="stat-value" id="stat-revenue">—</div>
+                                <div class="stat-subtext">All time</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-blue"><i class="fas fa-shopping-bag"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Total Orders</div>
+                                <div class="stat-value" id="stat-orders">—</div>
+                                <div class="stat-subtext" id="stat-orders-today">—</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-green"><i class="fas fa-calendar-check"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Bookings</div>
+                                <div class="stat-value" id="stat-bookings">—</div>
+                                <div class="stat-subtext" id="stat-bookings-today">—</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-amber"><i class="fas fa-users"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Customers</div>
+                                <div class="stat-value" id="stat-users">—</div>
+                                <div class="stat-subtext" id="stat-users-new">—</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-red"><i class="fas fa-boxes"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Products</div>
+                                <div class="stat-value" id="stat-products">—</div>
+                                <div class="stat-subtext" id="stat-low-stock">—</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-blue"><i class="fas fa-envelope"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Messages</div>
+                                <div class="stat-value" id="stat-messages">—</div>
+                                <div class="stat-subtext" id="stat-messages-new">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex-wrap:wrap;">
+                        <div class="panel-card" style="grid-column:1/-1">
+                            <div class="panel-header">
+                                <div>
+                                    <div class="panel-title"><i class="fas fa-list-ul"></i> Recent Orders</div>
+                                    <div class="panel-subtitle">Last 10 orders placed</div>
+                                </div>
+                                <button class="btn btn-secondary btn-sm" onclick="navigate('orders')">View All</button>
+                            </div>
+                            <div class="table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order #</th>
+                                            <th>Customer</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentOrdersBody">
+                                        <tr>
+                                            <td colspan="5" class="table-empty"><span
+                                                    class="empty-icon">📋</span>Loading...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== PRODUCTS ========== -->
+                <section class="view-section" id="section-products">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-boxes"></i> Products</div>
+                                <div class="panel-subtitle">Manage your parts catalog</div>
+                            </div>
+                            <div class="panel-actions">
+                                <input type="text" class="form-control" style="width:200px"
+                                    placeholder="Search products..." id="productSearch">
+                                <select class="form-select" style="width:160px" id="productCatFilter">
+                                    <option value="">All Categories</option>
+                                </select>
+                                <button class="btn btn-primary btn-sm" id="addProductBtn">
+                                    <i class="fas fa-plus"></i> Add Product
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productsBody">
+                                    <tr>
+                                        <td colspan="6" class="table-empty"><span class="empty-icon">📦</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination-bar">
+                            <span id="productsPaginInfo">— results</span>
+                            <div class="pagination-controls" id="productsPagination"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== CATEGORIES ========== -->
+                <section class="view-section" id="section-categories">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-tags"></i> Categories</div>
+                                <div class="panel-subtitle">Manage product categories</div>
+                            </div>
+                            <button class="btn btn-primary btn-sm" id="addCategoryBtn">
+                                <i class="fas fa-plus"></i> Add Category
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Slug</th>
+                                        <th>Description</th>
+                                        <th>Products</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categoriesBody">
+                                    <tr>
+                                        <td colspan="5" class="table-empty"><span
+                                                class="empty-icon">🏷️</span>Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== INVENTORY ========== -->
+                <section class="view-section" id="section-inventory">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-warehouse"></i> Inventory</div>
+                                <div class="panel-subtitle">Stock management & alerts</div>
+                            </div>
+                            <div class="panel-actions">
+                                <select class="form-select" style="width:180px" id="stockFilter">
+                                    <option value="">All Stock Levels</option>
+                                    <option value="out_of_stock">Out of Stock</option>
+                                    <option value="low_stock">Low Stock (&lt;10)</option>
+                                    <option value="in_stock">In Stock</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div
+                            style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;padding:16px 24px;border-bottom:1px solid var(--border-subtle)">
+                            <div class="stat-card" style="padding:16px">
+                                <div class="stat-icon-box stat-icon-red"
+                                    style="width:40px;height:40px;font-size:1.1rem"><i class="fas fa-times-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-label">Out of Stock</div>
+                                    <div class="stat-value" id="inv-out" style="font-size:1.4rem">—</div>
+                                </div>
+                            </div>
+                            <div class="stat-card" style="padding:16px">
+                                <div class="stat-icon-box stat-icon-amber"
+                                    style="width:40px;height:40px;font-size:1.1rem"><i
+                                        class="fas fa-exclamation-triangle"></i></div>
+                                <div class="stat-content">
+                                    <div class="stat-label">Low Stock</div>
+                                    <div class="stat-value" id="inv-low" style="font-size:1.4rem">—</div>
+                                </div>
+                            </div>
+                            <div class="stat-card" style="padding:16px">
+                                <div class="stat-icon-box stat-icon-green"
+                                    style="width:40px;height:40px;font-size:1.1rem"><i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-label">In Stock</div>
+                                    <div class="stat-value" id="inv-in" style="font-size:1.4rem">—</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Category</th>
+                                        <th>Current Stock</th>
+                                        <th>Status</th>
+                                        <th>Update Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventoryBody">
+                                    <tr>
+                                        <td colspan="5" class="table-empty"><span class="empty-icon">📦</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== ORDERS ========== -->
+                <section class="view-section" id="section-orders">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-shopping-bag"></i> Orders</div>
+                                <div class="panel-subtitle">Manage customer orders</div>
+                            </div>
+                            <div class="panel-actions">
+                                <input type="text" class="form-control" style="width:180px"
+                                    placeholder="Search order/customer..." id="orderSearch">
+                                <select class="form-select" style="width:160px" id="orderStatusFilter">
+                                    <option value="">All Statuses</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order #</th>
+                                        <th>Customer</th>
+                                        <th>Amount</th>
+                                        <th>Order Status</th>
+                                        <th>Payment</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersBody">
+                                    <tr>
+                                        <td colspan="7" class="table-empty"><span
+                                                class="empty-icon">🛍️</span>Loading...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination-bar">
+                            <span id="ordersPaginInfo">— results</span>
+                            <div class="pagination-controls" id="ordersPagination"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== SERVICES ========== -->
+                <section class="view-section" id="section-services">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-wrench"></i> Services</div>
+                                <div class="panel-subtitle">Manage workshop services</div>
+                            </div>
+                            <button class="btn btn-primary btn-sm" id="addServiceBtn">
+                                <i class="fas fa-plus"></i> Add Service
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Service Name</th>
+                                        <th>Category</th>
+                                        <th>Base Price</th>
+                                        <th>Duration</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="servicesBody">
+                                    <tr>
+                                        <td colspan="6" class="table-empty"><span class="empty-icon">🔧</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== BOOKINGS ========== -->
+                <section class="view-section" id="section-bookings">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-calendar-check"></i> Service Bookings</div>
+                                <div class="panel-subtitle">Manage workshop appointments</div>
+                            </div>
+                            <div class="panel-actions">
+                                <input type="text" class="form-control" style="width:180px" placeholder="Search..."
+                                    id="bookingSearch">
+                                <select class="form-select" style="width:160px" id="bookingStatusFilter">
+                                    <option value="">All Statuses</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="in_progress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Booking Ref</th>
+                                        <th>Customer</th>
+                                        <th>Service</th>
+                                        <th>Date & Time</th>
+                                        <th>Status</th>
+                                        <th>Cost</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bookingsBody">
+                                    <tr>
+                                        <td colspan="7" class="table-empty"><span class="empty-icon">📅</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination-bar">
+                            <span id="bookingsPaginInfo">— results</span>
+                            <div class="pagination-controls" id="bookingsPagination"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== VEHICLES ========== -->
+                <section class="view-section" id="section-vehicles">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-car"></i> Customer Vehicles</div>
+                                <div class="panel-subtitle">All registered vehicles</div>
+                            </div>
+                            <div class="panel-actions">
+                                <select class="form-select" style="width:160px" id="vehicleTypeFilter">
+                                    <option value="">All Types</option>
+                                    <option value="car">Car</option>
+                                    <option value="bike">Bike</option>
+                                    <option value="truck">Truck</option>
+                                    <option value="tractor">Tractor</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Vehicle</th>
+                                        <th>Reg. Number</th>
+                                        <th>Type</th>
+                                        <th>Owner</th>
+                                        <th>Year</th>
+                                        <th>Added</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vehiclesBody">
+                                    <tr>
+                                        <td colspan="6" class="table-empty"><span class="empty-icon">🚗</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination-bar">
+                            <span id="vehiclesPaginInfo">— results</span>
+                            <div class="pagination-controls" id="vehiclesPagination"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== PAYMENTS ========== -->
+                <section class="view-section" id="section-payments">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-credit-card"></i> Payments</div>
+                                <div class="panel-subtitle">Payment transactions & verification</div>
+                            </div>
+                            <div class="panel-actions">
+                                <input type="text" class="form-control" style="width:200px"
+                                    placeholder="Search payment/order..." id="paymentSearch">
+                                <select class="form-select" style="width:160px" id="paymentStatusFilter">
+                                    <option value="">All Statuses</option>
+                                    <option value="paid">Paid</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="failed">Failed</option>
+                                    <option value="refunded">Refunded</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Razorpay ID</th>
+                                        <th>Order #</th>
+                                        <th>Customer</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Method</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="paymentsBody">
+                                    <tr>
+                                        <td colspan="7" class="table-empty"><span class="empty-icon">💳</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination-bar">
+                            <span id="paymentsPaginInfo">— results</span>
+                            <div class="pagination-controls" id="paymentsPagination"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== REPORTS ========== -->
+                <section class="view-section" id="section-reports">
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-orange"><i class="fas fa-rupee-sign"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Today's Revenue</div>
+                                <div class="stat-value" id="rpt-today-rev">—</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-blue"><i class="fas fa-calendar"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Monthly Revenue</div>
+                                <div class="stat-value" id="rpt-month-rev">—</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-green"><i class="fas fa-shopping-bag"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Today's Orders</div>
+                                <div class="stat-value" id="rpt-today-orders">—</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon-box stat-icon-amber"><i class="fas fa-chart-bar"></i></div>
+                            <div class="stat-content">
+                                <div class="stat-label">Monthly Orders</div>
+                                <div class="stat-value" id="rpt-month-orders">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <div class="panel-title"><i class="fas fa-trophy"></i> Top Products</div>
+                            </div>
+                            <div class="panel-body" id="topProductsList">Loading...</div>
+                        </div>
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <div class="panel-title"><i class="fas fa-chart-pie"></i> Orders by Status</div>
+                            </div>
+                            <div class="panel-body" id="ordersByStatus">Loading...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== USERS ========== -->
+                <section class="view-section" id="section-users">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-users"></i> Customers</div>
+                                <div class="panel-subtitle">Manage registered users</div>
+                            </div>
+                            <div class="panel-actions">
+                                <input type="text" class="form-control" style="width:200px"
+                                    placeholder="Search name/email..." id="userSearch">
+                                <select class="form-select" style="width:160px" id="userStatusFilter">
+                                    <option value="">All Users</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Status</th>
+                                        <th>Joined</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersBody">
+                                    <tr>
+                                        <td colspan="6" class="table-empty"><span class="empty-icon">👤</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination-bar">
+                            <span id="usersPaginInfo">— results</span>
+                            <div class="pagination-controls" id="usersPagination"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========== MESSAGES ========== -->
+                <section class="view-section" id="section-messages">
+                    <div class="panel-card">
+                        <div class="panel-header">
+                            <div>
+                                <div class="panel-title"><i class="fas fa-envelope"></i> Contact Messages</div>
+                                <div class="panel-subtitle">Customer inquiries & support</div>
+                            </div>
+                            <div class="panel-actions">
+                                <select class="form-select" style="width:160px" id="msgStatusFilter">
+                                    <option value="">All Messages</option>
+                                    <option value="new">New</option>
+                                    <option value="read">Read</option>
+                                    <option value="resolved">Resolved</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>From</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="messagesBody">
+                                    <tr>
+                                        <td colspan="6" class="table-empty"><span class="empty-icon">✉️</span>Loading...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </main><!-- /content-body -->
+        </div><!-- /main-wrapper -->
+    </div><!-- /admin-layout -->
+
+
+    <!-- ========== MODALS ========== -->
+
+    <!-- Product Modal -->
+    <div class="modal-backdrop" id="productModal">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title" id="productModalTitle">Add Product</h3>
+                <button class="modal-close-btn" data-modal="productModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <input type="hidden" id="productId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Product Name *</label>
+                            <input type="text" class="form-control" id="pName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category *</label>
+                            <select class="form-select" id="pCategory" required>
+                                <option value="">Select category...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="pDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Price (₹) *</label>
+                            <input type="number" class="form-control" id="pPrice" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stock Quantity</label>
+                            <input type="number" class="form-control" id="pStock" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">SKU</label>
+                            <input type="text" class="form-control" id="pSku">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Brand</label>
+                            <input type="text" class="form-control" id="pBrand">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="pImage" placeholder="https://...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox" id="pIsActive" checked>
+                            Product is active / visible to customers
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="productModal">Cancel</button>
+                <button class="btn btn-primary" id="saveProductBtn">Save Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div class="modal-backdrop" id="categoryModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title" id="categoryModalTitle">Add Category</h3>
+                <button class="modal-close-btn" data-modal="categoryModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="categoryForm">
+                    <input type="hidden" id="categoryId">
+                    <div class="form-group">
+                        <label class="form-label">Category Name *</label>
+                        <input type="text" class="form-control" id="catName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Slug</label>
+                        <input type="text" class="form-control" id="catSlug" placeholder="auto-generated">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="catDescription" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="categoryModal">Cancel</button>
+                <button class="btn btn-primary" id="saveCategoryBtn">Save Category</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Modal -->
+    <div class="modal-backdrop" id="serviceModal">
+        <div class="modal-box modal-lg">
+            <div class="modal-header">
+                <h3 class="modal-title" id="serviceModalTitle">Add Service</h3>
+                <button class="modal-close-btn" data-modal="serviceModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="serviceForm">
+                    <input type="hidden" id="serviceId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Service Name *</label>
+                            <input type="text" class="form-control" id="svcName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <input type="text" class="form-control" id="svcCategory" placeholder="e.g. Engine, Brakes">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="svcDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Base Price (₹) *</label>
+                            <input type="number" class="form-control" id="svcPrice" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Duration (mins)</label>
+                            <input type="number" class="form-control" id="svcDuration" min="15" step="15"
+                                placeholder="60">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox" id="svcIsActive" checked>
+                            Service is active
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="serviceModal">Cancel</button>
+                <button class="btn btn-primary" id="saveServiceBtn">Save Service</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Status Modal -->
+    <div class="modal-backdrop" id="orderModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Update Order #<span id="orderModalRef"></span></h3>
+                <button class="modal-close-btn" data-modal="orderModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="orderId">
+                <div class="form-group">
+                    <label class="form-label">Order Status</label>
+                    <select class="form-select" id="orderStatusUpdate">
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="processing">Processing</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Payment Status</label>
+                    <select class="form-select" id="orderPaymentUpdate">
+                        <option value="pending">Pending</option>
+                        <option value="paid">Paid</option>
+                        <option value="failed">Failed</option>
+                        <option value="refunded">Refunded</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Admin Notes</label>
+                    <textarea class="form-control" id="orderNotes" rows="3"
+                        placeholder="Optional internal note..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="orderModal">Cancel</button>
+                <button class="btn btn-primary" id="saveOrderBtn">Update Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Status Modal -->
+    <div class="modal-backdrop" id="bookingModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Update Booking <span id="bookingModalRef"></span></h3>
+                <button class="modal-close-btn" data-modal="bookingModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="bookingId">
+                <div class="form-group">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" id="bookingStatusUpdate">
+                        <option value="pending">Pending</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Estimated Cost (₹)</label>
+                    <input type="number" class="form-control" id="bookingCost" min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Admin Notes</label>
+                    <textarea class="form-control" id="bookingNotes" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="bookingModal">Cancel</button>
+                <button class="btn btn-primary" id="saveBookingBtn">Update Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal-backdrop" id="messageModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Message Details</h3>
+                <button class="modal-close-btn" data-modal="messageModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="messageId">
+                <div id="messageDetails"></div>
+                <div class="form-group" style="margin-top:16px">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" id="messageStatusUpdate">
+                        <option value="new">New</option>
+                        <option value="read">Read</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Admin Response</label>
+                    <textarea class="form-control" id="messageResponse" rows="4"
+                        placeholder="Reply to customer..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger btn-sm" id="deleteMessageBtn">Delete</button>
+                <button class="btn btn-secondary" data-modal="messageModal">Close</button>
+                <button class="btn btn-primary" id="saveMessageBtn">Save Response</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Update Modal -->
+    <div class="modal-backdrop" id="stockModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 class="modal-title">Update Stock — <span id="stockProductName"></span></h3>
+                <button class="modal-close-btn" data-modal="stockModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="stockProductId">
+                <div class="form-group">
+                    <label class="form-label">New Stock Quantity</label>
+                    <input type="number" class="form-control" id="stockQty" min="0" placeholder="Enter quantity">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="stockModal">Cancel</button>
+                <button class="btn btn-primary" id="saveStockBtn">Update Stock</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div class="modal-backdrop" id="confirmModal">
+        <div class="modal-box" style="max-width:440px">
+            <div class="modal-header">
+                <h3 class="modal-title" id="confirmTitle">Confirm Action</h3>
+                <button class="modal-close-btn" data-modal="confirmModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmText" style="color:var(--text-secondary)">Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-modal="confirmModal">Cancel</button>
+                <button class="btn btn-danger" id="confirmActionBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="../JAVASRIPT/admin/api.js"></script>
+    <script src="../JAVASRIPT/admin/utils.js"></script>
+    <script src="../JAVASRIPT/admin/dashboard.js"></script>
+    <script src="../JAVASRIPT/admin/products.js"></script>
+    <script src="../JAVASRIPT/admin/categories.js"></script>
+    <script src="../JAVASRIPT/admin/inventory.js"></script>
+    <script src="../JAVASRIPT/admin/orders.js"></script>
+    <script src="../JAVASRIPT/admin/services.js"></script>
+    <script src="../JAVASRIPT/admin/bookings.js"></script>
+    <script src="../JAVASRIPT/admin/vehicles.js"></script>
+    <script src="../JAVASRIPT/admin/payments.js"></script>
+    <script src="../JAVASRIPT/admin/reports.js"></script>
+    <script src="../JAVASRIPT/admin/users.js"></script>
+    <script src="../JAVASRIPT/admin/messages.js"></script>
+    <script src="../JAVASRIPT/admin/app.js"></script>
+
+</body>
+
+</html>

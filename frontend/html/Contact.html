@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MahtoMech — Mechanical Shop & Vehicle Parts</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/Contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cog gear big-gear"></i>
+                    <i class="fas fa-cog gear small-gear"></i>
+                </div>
+
+                MAHTO<span>MECH</span>
+            </a>
+            <ul class="nav-link">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="buy-parts.html">Buy Parts</a></li>
+                <li><a href="booking.html">Book Service</a></li>
+                <li><a href="Contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="nav-action">
+                <div class="search-box">
+                    <input type="text" placeholder="Search Components, fixes..." id="Searchbar">   
+                </div>
+                <a href="login.html" class="login-logo" title="Login"><i class="fas fa-user"></i></a>
+                <a href="Cart.html" class="cart-logo" title="Cart">🛒<span class="shopping-cart" id="Cardcount">0</span></a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="contact-header">
+        <h1>CONTACT <span>US</span></h1>
+        <p>Reach out for any inquiries, support, or to schedule an appointment.</p>
+    </div>
+
+    <div class="container">
+        <div class="contact-card">
+            <div class="contact-card-body">
+                <h2>GET IN <span>TOUCH</span></h2>
+
+                <div class="contact-group">
+                    <h3>Headquarters</h3>
+                    <div class="contact-group-item">
+                        <span>Main Workshop</span>
+                        <p>Sector 10, Industrial Area<br>MahtoMech Nagar, City — 2010</p>
+                    </div>
+                </div>
+
+                <div class="contact-group">
+                    <h3>📞 Call Us</h3>
+                    <div class="contact-group-item">
+                        <span>Phone (Support)</span>
+                        <p><a href="tel:+919470369959">+91 94703 69959</a></p>
+                    </div>
+
+                    <div class="contact-group-item">
+                        <span>WhatsApp</span>
+                        <p><a href="https://wa.me/919470369959" target="_blank">+91 94703 69959</a></p>
+                    </div>
+                </div>
+
+
+                <div class="contact-group">
+                    <h3>📧 Email</h3>
+                    <div class="contact-group-item">
+                        <span>General Inquiry</span>
+                        <p><a href="mailto:info@mahtomech.in">info@mahtomech.in</a></p>
+                    </div>
+
+                    <div class="contact-group-item">
+                        <span>Service & Booking</span>
+                        <p><a href="mailto:service@mahtomech.in">service@mahtomech.in</a></p>
+                    </div>
+
+                    <div class="contact-group-item">
+                        <span>Parts & Sales</span>
+                        <p><a href="mailto:parts@mahtomech.in">parts@mahtomech.in</a></p>
+                    </div>
+                </div>
+                <div class="contact-group">
+                    <h3>🕐 Business Hours</h3>
+                    <div class="contact-group-item">
+                        <span>Monday to Saturday</span>
+                        <p>8:00 AM – 8:00 PM</p>
+                    </div>
+
+                    <div class="contact-group-item">
+                        <span>Sunday</span>
+                        <p>9:00 AM – 5:00 PM</p>
+                    </div>
+                </div>
+            
+
+                <div class="contact-group">
+                    <h3>FOLLOW US</h3>
+                    <div class="social-link">
+                        <a href="#"  title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"  title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#"  title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#"  title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"  title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>SEND <span>MESSAGE</span></h3>
+                <form method="post" action="/contact-submit">
+                    <div class="contact-form-detail">
+                        <div class="contact-form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="your@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-detail">
+                        <div class="contact-form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX">
+                        </div>
+                        <div class="contact-form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option>General Inquiry</option>
+                            <option>Service Question</option>
+                            <option>Parts Availability</option>
+                            <option>Feedback</option>
+                            <option>Complaint</option>
+                            <option>Partnership Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell us more..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="button-send">
+                        <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section class="location-section">
+        <h2>OUR <span>LOCATION</span></h2>
+        <div class="location-main-section">
+            <div class="location-card">
+                <span>🏠</span>
+                <h3>Main Workshop</h3>
+                <p>Sector 10, Industrial Area<br>MahtoMech Nagar, City — 2010</p>
+                <div class="location-hours">
+                    <div><strong>Open:</strong> 24 Hours (Every Day)</div>
+                </div>
+            </div>
+
+
+            <div class="location-card">
+                <span>🛠️</span>
+                <h3>Service Center</h3>
+                <p>West Side, Commercial Zone<br>Auto Nagar, City — 2011</p>
+                <div class="location-hours">
+                    <div><strong>Mon–Sun:</strong> 8 AM – 8 PM</div>
+                    <div><strong>Status:</strong> Open Every Day</div>
+                </div>
+            </div>
+            <div class="location-card">
+                <span>📦</span>
+                <h3>Parts Warehouse</h3>
+                <p>North Point, Logistics Hub<br>Parts City, City — 2012</p>
+                <div class="location-hours">
+                    <div><strong>Open:</strong> 24 Hours</div>
+                    <div><strong>Status:</strong> Open Every Day</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2>FIND <span>US</span> ON MAP</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d69463.92024535808!2d85.51837120574419!3d23.598456433788446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f4f5003a84058f%3A0x8713a65d1c164a72!2sKothar%20Ramgarh!5e0!3m2!1sen!2sin!4v1781281127774!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>© 2026 <span>MahtoMech</span>. All rights reserved. Made with 🔧 for car enthusiasts.</p>
+            <div class="payment-icons">
+                <div class="payment-icon">UPI</div>
+                <div class="payment-icon">VISA</div>
+                <div class="payment-icon">MC</div>
+                <div class="payment-icon">PayTM</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../JAVASRIPT/api.js"></script>
+    <script src="../JAVASRIPT/main.js" defer></script>
+    <script src="../JAVASRIPT/contact.js" defer></script>
+</body>
+</html>
+    

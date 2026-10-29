@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MahtoMech — Mechanical Shop & Vehicle Parts</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav id="nav-bar">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cog gear big-gear"></i>
+                    <i class="fas fa-cog gear small-gear"></i>
+                </div>
+
+                MAHTO<span>MECH</span>
+            </a>
+            <ul class="nav-link">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="buy-parts.html">Buy Parts</a></li>
+                <li><a href="booking.html">Book Service</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-action">
+                <div class="search-box">
+                    <input type="text" placeholder="Search Components, fixes..." id="Searchbar">   
+                </div>
+                <a href="login.html" class="login-logo" title="Login"><i class="fas fa-user"></i></a>
+                <a href="Cart.html" class="cart-logo" title="Cart">🛒<span class="shopping-cart" id="Cardcount">4</span></a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+    
+
+    <div class="cart-header">
+        <h1>SHOPPING <span>CART</span></h1>
+        <p>Review your selected parts and proceed to checkout.</p>
+    </div>
+
+
+    <div class="cantainer">
+        <div class="cart-card">
+            <div class="cart-card-item">
+                <div class="cart-card-body">
+                    <div class="cart-image">
+                        <img src="../image/Bike_Premium_Bike_Chain_Kit.webp" alt="">
+                    </div>
+                    <div class="cart-product">
+                        <h3>Premium Bike Chain Kit</h3>
+                        <p>With sprockets included</p>
+                        <span class="item-price">₹1,199</span>
+                    </div>
+                    
+                </div>
+
+                <div class="item-action">
+                    <div class="quantity-control">
+                        <button class="quantity-button">−</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-button">+</button>
+                    </div>
+                    <span class="item-total">₹1,199</span>
+                    <button class="remove-button">🗑️ REMOVE</button>
+                </div>
+            </div>
+
+
+
+            <div class="cart-card-item">
+                <div class="cart-card-body">
+                    <div class="cart-image">
+                        <img src="../image/Bike_High-Grip_Bike_Tyres (Pair).webp" alt="">
+                    </div>
+                    
+                    <div class="cart-product">
+                        <h3>High-Grip Bike Tyres (Pair)</h3>
+                        <p>MRF / Ceat / Apollo</p>
+                        <span class="item-price">₹2,499</span>
+                    </div>
+                    
+                </div>
+
+                <div class="item-action">
+                    <div class="quantity-control">
+                        <button class="quantity-button">−</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-button">+</button>
+                    </div>
+                    <span class="item-total">₹2,499</span>
+                    <button class="remove-button">🗑️ REMOVE</button>
+                </div>
+            </div>
+
+
+            <div class="cart-card-item">
+                <div class="cart-card-body">
+                    <div class="cart-image">
+                        <img src="../image/Bike_Brake_Pads_&_Discs.webp" alt="">
+                    </div>
+                    <div class="cart-product">
+                        <h3>Bike Brake Pads & Discs</h3>
+                        <p>Front + rear set</p>
+                        <span class="item-price">₹899</span>
+                    </div>
+                    
+                </div>
+
+                <div class="item-action">
+                    <div class="quantity-control">
+                        <button class="quantity-button">−</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-button">+</button>
+                    </div>
+                    <span class="item-total">₹899</span>
+                    <button class="remove-button">🗑️ REMOVE</button>
+                </div>
+            </div>
+
+            <div class="cart-card-item">
+                <div class="cart-card-body">
+                    <div class="cart-image">
+                        <img src="../image/Bike_Clutch_Plate_Kit.webp" alt="">
+                    </div>
+                    <div class="cart-product">
+                        <h3>Bike Clutch Plate Kit</h3>
+                        <p>Premium friction material</p>
+                        <span class="item-price">₹749</span>
+                    </div>
+                    
+                </div>
+
+                <div class="item-action">
+                    <div class="quantity-control">
+                        <button class="quantity-button">−</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-button">+</button>
+                    </div>
+                    <span class="item-total">₹749</span>
+                    <button class="remove-button">🗑️ REMOVE</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="order-summary">
+            <h2>ORDER SUMMARY</h2>
+
+
+            <div class="summary-type">
+                <span class="summary-label">Subtotal</span>
+                <span>₹5,346</span>
+            </div>
+
+            <div class="summary-type">
+                <span class="summary-label">Shipping</span>
+                <span>FREE</span>
+            </div>
+
+            <div class="summary-type">
+                <span class="summary-label">Tax (18% GST)</span>
+                <span>₹963</span>
+                </div>
+            <div class="summary-total">
+                <span>TOTAL</span>
+                <span>₹6,309</span>
+            </div>
+            
+            <a href="checkout.html" class="checkbox-button">
+                <i class="fa fa-lock"></i> PROCEED TO CHECKOUT
+            </a>
+
+            <a href="buy-parts.html" class="continue-button">
+                <i class="fa fa-arrow-left"></i> CONTINUE SHOPPING
+            </a>
+
+            <div class="summary-info">
+                <p><i class="fa fa-shield"></i> Secure checkout</p>
+                <p><i class="fa fa-truck"></i> Free shipping on orders above ₹2000</p>
+                <p><i class="fa fa-undo"></i> 7-day returns guarantee</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>© 2026 <span>MahtoMech</span>. All rights reserved. Made with 🔧 for car enthusiasts.</p>
+            <div class="payment-icons">
+                <div class="payment-icon">UPI</div>
+                <div class="payment-icon">VISA</div>
+                <div class="payment-icon">MC</div>
+                <div class="payment-icon">PayTM</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../JAVASRIPT/api.js"></script>
+    <script src="../JAVASRIPT/main.js" defer></script>
+    <script src="../JAVASRIPT/cart.js" defer></script>
+</body>
+</html>

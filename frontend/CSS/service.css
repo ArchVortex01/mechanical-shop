@@ -1,0 +1,226 @@
+/* ============================================================
+   SERVICES PAGE STYLES
+   ============================================================ */
+
+#service-hero {
+    min-height: 100vh;
+    padding: 130px 1.5rem 60px;
+    text-align: center;
+    background: radial-gradient(circle at center, rgba(255, 102, 0, .12), transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-hero-sub {
+    color: #ff6600;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+.service-hero-page h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    font-weight: 900;
+    margin: 0.5rem 0 1.2rem 0;
+    line-height: 1.15;
+    color: #ffffff;
+}
+
+.service-hero-page h1 span {
+    background: linear-gradient(135deg, #ff9933 0%, #ff5500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#service-hero p {
+    color: #94a3b8;
+    max-width: 700px;
+    margin: 0 auto 0.6rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    padding: 0 10px;
+}
+
+.service-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3.5rem;
+    max-width: 1250px;
+    width: 100%;
+}
+
+.service-card-icon {
+    background: #111217;
+    border: 1px solid #1f2330;
+    padding: 2.8rem 2.2rem;
+    border-radius: 20px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card-icon:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 102, 0, 0.5);
+    background: radial-gradient(circle at top right, rgba(255, 102, 0, 0.12) 0%, #111217 70%);
+}
+
+.service-icon {
+    font-size: 2.8rem;
+    display: block;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.service-card-icon:hover .service-icon {
+    filter: drop-shadow(0 0 12px rgba(255, 102, 0, 0.6)) saturate(1.5);
+    transform: scale(1.1);
+}
+
+.service-card-icon h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.service-card-icon h3 span {
+    color: #ff6600;
+}
+
+.service-card-icon p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.price {
+    display: inline-block;
+    align-self: flex-start;
+    background: linear-gradient(135deg, #ff7700, #e04400);
+    padding: 0.65rem 1.2rem;
+    border-radius: 30px;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-top: auto;
+}
+
+/* Service Booking CTA Box */
+.service-booking {
+    margin: 4rem auto 5rem;
+    max-width: 900px;
+    width: calc(100% - 2rem);
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 119, 0, 0.15), rgba(255, 85, 0, 0.05));
+    border: 1px solid #282c38;
+    border-radius: 24px;
+    padding: 3.5rem 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.service-booking:hover {
+    border-color: rgba(255, 102, 0, 0.4);
+    box-shadow: 0 20px 45px rgba(255, 102, 0, 0.1);
+}
+
+.service-booking h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.service-booking p {
+    color: #94a3b8;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    margin-bottom: 2rem;
+}
+
+.service-booking a {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff7700, #e04400);
+    color: white;
+    padding: 0.95rem 2.2rem;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 102, 0, 0.25);
+}
+
+.service-booking a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(255, 102, 0, 0.4);
+}
+
+
+/* ============================================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================================ */
+
+@media (max-width: 768px) {
+    #service-hero {
+        padding: 105px 1.25rem 45px;
+    }
+
+    .service-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .service-card-icon {
+        padding: 2.2rem 1.6rem;
+    }
+
+    .service-booking {
+        margin: 3rem auto 4rem;
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #service-hero {
+        padding: 95px 1rem 35px;
+    }
+
+    .service-card-icon {
+        padding: 1.8rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .service-icon {
+        font-size: 2.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-card-icon h3 {
+        font-size: 1.2rem;
+    }
+
+    .service-booking {
+        border-radius: 16px;
+        padding: 2rem 1.2rem;
+    }
+
+    .service-booking a {
+        width: 100%;
+        padding: 0.85rem 1rem;
+    }
+}
