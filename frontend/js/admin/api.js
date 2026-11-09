@@ -19,7 +19,7 @@ const API_BASE_URL = window.MAHTOMECH_API_BASE_URL ||
 
 // ── Auth helpers ─────────────────────────────────────────────────────────────
 function getToken() {
-    return localStorage.getItem('adminToken');
+    return localStorage.getItem('adminToken') || localStorage.getItem('mm_auth_token');
 }
 
 function getAuthHeaders(isJson = true) {
@@ -45,7 +45,9 @@ async function apiRequest(method, endpoint, body = null) {
         if (res.status === 401) {
             localStorage.removeItem('adminToken');
             localStorage.removeItem('adminUser');
-            window.location.href = 'admin-login.html';
+            localStorage.removeItem('mm_auth_token');
+            localStorage.removeItem('mm_auth_user');
+            window.location.href = 'login.html';
             return;
         }
 

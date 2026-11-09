@@ -5,14 +5,18 @@
 
 // ── Auth Guard ───────────────────────────────────────────────────────────────
 (function authGuard() {
-    const token = localStorage.getItem('adminToken');
-    if (!token) {
-        window.location.href = 'admin-login.html';
+    const token = localStorage.getItem('adminToken') || localStorage.getItem('mm_auth_token');
+    let user = {};
+    try {
+        user = JSON.parse(localStorage.getItem('adminUser') || localStorage.getItem('mm_auth_user') || '{}');
+    } catch (_) {}
+
+    if (!token || user.role !== 'ADMIN') {
+        window.location.href = 'login.html';
         return;
     }
     // Populate admin info in sidebar
     try {
-        const user = JSON.parse(localStorage.getItem('adminUser') || '{}');
         const name = user.full_name || user.name || user.email || 'Admin';
         const avatarEl = document.getElementById('adminAvatar');
         const nameEl   = document.getElementById('adminName');
@@ -104,7 +108,9 @@ document.getElementById('logoutBtn')?.addEventListener('click', () => {
     confirmAction('Logout', 'Are you sure you want to log out?', () => {
         localStorage.removeItem('adminToken');
         localStorage.removeItem('adminUser');
-        window.location.href = 'admin-login.html';
+        localStorage.removeItem('mm_auth_token');
+        localStorage.removeItem('mm_auth_user');
+        window.location.href = 'login.html';
     });
 });
 

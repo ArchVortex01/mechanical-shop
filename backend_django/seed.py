@@ -58,39 +58,39 @@ for name, slug, desc in categories_data:
 # 4. Create Catalog Products (Matching buy-parts.html store items)
 products_data = [
     # Car Parts
-    ('Engine Oil Filter (Top Quality)', 'CAR-OIL-01', 'car-parts', 'Bosch', 'Universal Car', 450.00, 650.00, 50, '../image/Car_Engine_oil_Filter.webp'),
-    ('Brake Pads (Set of 4)', 'CAR-BRK-02', 'car-parts', 'Brembo', 'Universal Car', 1299.00, 1899.00, 40, '../image/Car_Brake_Pads.webp'),
-    ('Car Battery 60Ah SMF', 'CAR-BAT-03', 'car-parts', 'Amaron', 'Universal Car', 3499.00, 4299.00, 30, '../image/Car Battery 60Ah SMF.webp'),
-    ('LED Headlight Bulbs Pair', 'CAR-LED-04', 'car-parts', 'Philips', 'Universal Car', 899.00, 1299.00, 60, '../image/Car_LED_Headlight_Bulbs_Pair1.webp'),
-    ('Alternator Assembly', 'CAR-ALT-05', 'car-parts', 'Lucas-TVS', 'Universal Car', 5899.00, 7499.00, 20, '../image/car_alt.webp'),
+    ('Engine Oil Filter (Top Quality)', 'CAR-OIL-01', 'car-parts', 'Bosch', 'Universal Car', 450.00, 650.00, 50, '../images/Car_Engine_oil_Filter.webp'),
+    ('Brake Pads (Set of 4)', 'CAR-BRK-02', 'car-parts', 'Brembo', 'Universal Car', 1299.00, 1899.00, 40, '../images/Car_Brake_Pads.webp'),
+    ('Car Battery 60Ah SMF', 'CAR-BAT-03', 'car-parts', 'Amaron', 'Universal Car', 3499.00, 4299.00, 30, '../images/Car Battery 60Ah SMF.webp'),
+    ('LED Headlight Bulbs Pair', 'CAR-LED-04', 'car-parts', 'Philips', 'Universal Car', 899.00, 1299.00, 60, '../images/Car_LED_Headlight_Bulbs_Pair1.webp'),
+    ('Alternator Assembly', 'CAR-ALT-05', 'car-parts', 'Lucas-TVS', 'Universal Car', 5899.00, 7499.00, 20, '../images/car_alt.webp'),
 
     # Bike Parts
-    ('Premium Bike Chain Kit', 'BIKE-CHN-01', 'bike-parts', 'Rolon', 'Motorcycle', 850.00, 1100.00, 45, '../image/Bike_Premium_Bike_Chain_Kit.webp'),
-    ('High-Grip Bike Tyres (Pair)', 'BIKE-TYR-02', 'bike-parts', 'MRF', 'Motorcycle', 2600.00, 3200.00, 25, '../image/Bike_High-Grip_Bike_Tyres (Pair).webp'),
-    ('Bike Brake Pads & Discs', 'BIKE-BRK-03', 'bike-parts', 'Endurance', 'Motorcycle', 750.00, 950.00, 50, '../image/Bike_Brake_Pads_&_Discs.webp'),
-    ('Bike Clutch Plate Kit', 'BIKE-CLT-04', 'bike-parts', 'FCC', 'Motorcycle', 650.00, 850.00, 35, '../image/Bike_Clutch_Plate_Kit.webp'),
-    ('Front Suspension Fork Assembly', 'BIKE-SUS-05', 'bike-parts', 'Gabriel', 'Motorcycle', 3200.00, 4100.00, 15, '../image/Bike_Front_Suspension_Fork_Assembly.webp'),
+    ('Premium Bike Chain Kit', 'BIKE-CHN-01', 'bike-parts', 'Rolon', 'Motorcycle', 850.00, 1100.00, 45, '../images/Bike_Premium_Bike_Chain_Kit.webp'),
+    ('High-Grip Bike Tyres (Pair)', 'BIKE-TYR-02', 'bike-parts', 'MRF', 'Motorcycle', 2600.00, 3200.00, 25, '../images/Bike_High-Grip_Bike_Tyres (Pair).webp'),
+    ('Bike Brake Pads & Discs', 'BIKE-BRK-03', 'bike-parts', 'Endurance', 'Motorcycle', 750.00, 950.00, 50, '../images/Bike_Brake_Pads_&_Discs.webp'),
+    ('Bike Clutch Plate Kit', 'BIKE-CLT-04', 'bike-parts', 'FCC', 'Motorcycle', 650.00, 850.00, 35, '../images/Bike_Clutch_Plate_Kit.webp'),
+    ('Front Suspension Fork Assembly', 'BIKE-SUS-05', 'bike-parts', 'Gabriel', 'Motorcycle', 3200.00, 4100.00, 15, '../images/Bike_Front_Suspension_Fork_Assembly.webp'),
 
     # Truck Parts
-    ('Turbocharger Assembly', 'TRK-TRB-01', 'truck-parts', 'Holset', 'Heavy Commercial', 14500.00, 18000.00, 10, '../image/Truck_Turbocharger_Assembly.webp'),
-    ('Fuel Injection Pump', 'TRK-FIP-02', 'truck-parts', 'MICO-Bosch', 'Heavy Commercial', 9800.00, 12500.00, 12, '../image/Truck_Fuel_Injection_Pump.webp'),
-    ('Engine Oil Filter', 'TRK-OIL-03', 'truck-parts', 'Fleetguard', 'Heavy Commercial', 850.00, 1150.00, 40, '../image/Truck_Engine_Oil_Filter.webp'),
-    ('Clutch Plate Kit', 'TRK-CLT-04', 'truck-parts', 'Valeo', 'Heavy Commercial', 6200.00, 7800.00, 18, '../image/Truck_Clutch_Plate_Kit.webp'),
-    ('Differential Assembly', 'TRK-DIF-05', 'truck-parts', 'Meritor', 'Heavy Commercial', 24000.00, 29000.00, 8, '../image/Truck_Differential_Assembly.webp'),
+    ('Turbocharger Assembly', 'TRK-TRB-01', 'truck-parts', 'Holset', 'Heavy Commercial', 14500.00, 18000.00, 10, '../images/Truck_Turbocharger_Assembly.webp'),
+    ('Fuel Injection Pump', 'TRK-FIP-02', 'truck-parts', 'MICO-Bosch', 'Heavy Commercial', 9800.00, 12500.00, 12, '../images/Truck_Fuel_Injection_Pump.webp'),
+    ('Engine Oil Filter', 'TRK-OIL-03', 'truck-parts', 'Fleetguard', 'Heavy Commercial', 850.00, 1150.00, 40, '../images/Truck_Engine_Oil_Filter.webp'),
+    ('Clutch Plate Kit', 'TRK-CLT-04', 'truck-parts', 'Valeo', 'Heavy Commercial', 6200.00, 7800.00, 18, '../images/Truck_Clutch_Plate_Kit.webp'),
+    ('Differential Assembly', 'TRK-DIF-05', 'truck-parts', 'Meritor', 'Heavy Commercial', 24000.00, 29000.00, 8, '../images/Truck_Differential_Assembly.webp'),
 
     # Tractor Parts
-    ('Tractor Clutch Plate', 'TRC-CLT-01', 'tractor-parts', 'Mahindra Genuine', 'Tractor', 4200.00, 5200.00, 20, '../image/Tractor_Clutch_Plate.webp'),
-    ('Tractor Piston Kit', 'TRC-PST-02', 'tractor-parts', 'Goetze', 'Tractor', 5800.00, 7100.00, 15, '../image/Tractor_Piston_Kit.webp'),
-    ('Tractor Gear Box Parts', 'TRC-GBX-03', 'tractor-parts', 'Sonalika Genuine', 'Tractor', 8500.00, 10500.00, 10, '../image/Tractor_Gear_Box_Parts.webp'),
-    ('Hydraulic Pump', 'TRC-HYD-04', 'tractor-parts', 'Rexroth', 'Tractor', 7200.00, 8900.00, 14, '../image/Tractor_Hydraulic_Pump.webp'),
-    ('Engine Start Motor', 'TRC-STR-05', 'tractor-parts', 'Denso', 'Tractor', 3800.00, 4800.00, 22, '../image/Tractor_Engine_Start_Motor.webp'),
+    ('Tractor Clutch Plate', 'TRC-CLT-01', 'tractor-parts', 'Mahindra Genuine', 'Tractor', 4200.00, 5200.00, 20, '../images/Tractor_Clutch_Plate.webp'),
+    ('Tractor Piston Kit', 'TRC-PST-02', 'tractor-parts', 'Goetze', 'Tractor', 5800.00, 7100.00, 15, '../images/Tractor_Piston_Kit.webp'),
+    ('Tractor Gear Box Parts', 'TRC-GBX-03', 'tractor-parts', 'Sonalika Genuine', 'Tractor', 8500.00, 10500.00, 10, '../images/Tractor_Gear_Box_Parts.webp'),
+    ('Hydraulic Pump', 'TRC-HYD-04', 'tractor-parts', 'Rexroth', 'Tractor', 7200.00, 8900.00, 14, '../images/Tractor_Hydraulic_Pump.webp'),
+    ('Engine Start Motor', 'TRC-STR-05', 'tractor-parts', 'Denso', 'Tractor', 3800.00, 4800.00, 22, '../images/Tractor_Engine_Start_Motor.webp'),
 
     # Bus Parts
-    ('Bus Turbocharger Assembly', 'BUS-TRB-01', 'bus-parts', 'Garrett', 'Bus / Coach', 16000.00, 19500.00, 10, '../image/Bus_Turbocharger_Assembly.webp'),
-    ('Fuel Injector', 'BUS-INJ-02', 'bus-parts', 'Bosch', 'Bus / Coach', 4500.00, 5600.00, 25, '../image/Bus_Fuel_Injector.webp'),
-    ('Air Brake Chamber', 'BUS-BRK-03', 'bus-parts', 'Knorr-Bremse', 'Bus / Coach', 3200.00, 4100.00, 30, '../image/Bus_Air_Brake_Chamber.webp'),
-    ('Leaf Spring Assembly', 'BUS-LFS-04', 'bus-parts', 'Jamna Auto', 'Bus / Coach', 5500.00, 6800.00, 16, '../image/Bus_Leaf_Spring_Assembly.webp'),
-    ('Bus Differential Assembly', 'BUS-DIF-05', 'bus-parts', 'Dana Spicer', 'Bus / Coach', 26000.00, 31000.00, 6, '../image/Bus_Differential_Assembly.webp'),
+    ('Bus Turbocharger Assembly', 'BUS-TRB-01', 'bus-parts', 'Garrett', 'Bus / Coach', 16000.00, 19500.00, 10, '../images/Bus_Turbocharger_Assembly.webp'),
+    ('Fuel Injector', 'BUS-INJ-02', 'bus-parts', 'Bosch', 'Bus / Coach', 4500.00, 5600.00, 25, '../images/Bus_Fuel_Injector.webp'),
+    ('Air Brake Chamber', 'BUS-BRK-03', 'bus-parts', 'Knorr-Bremse', 'Bus / Coach', 3200.00, 4100.00, 30, '../images/Bus_Air_Brake_Chamber.webp'),
+    ('Leaf Spring Assembly', 'BUS-LFS-04', 'bus-parts', 'Jamna Auto', 'Bus / Coach', 5500.00, 6800.00, 16, '../images/Bus_Leaf_Spring_Assembly.webp'),
+    ('Bus Differential Assembly', 'BUS-DIF-05', 'bus-parts', 'Dana Spicer', 'Bus / Coach', 26000.00, 31000.00, 6, '../images/Bus_Differential_Assembly.webp'),
 ]
 
 for name, sku, cat_slug, brand, compat, price, orig_price, stock, img in products_data:

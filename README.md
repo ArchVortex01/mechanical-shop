@@ -66,7 +66,8 @@ MahtoMech follows a decoupled client-server architecture:
 - **Order Tracking & Management:** View order history, item breakdowns, delivery status, and cancel pending orders.
 - **Customer Profile:** Manage contact details, saved delivery addresses, and vehicle garage records.
 
-### 🛠️ Administrative & Management Portal (`/admin-login.html`)
+### 🛠️ Administrative & Management Portal (`/admin-panel.html`)
+> **Unified Login:** Admins sign in directly via `/html/login.html`. Entering administrator credentials automatically unlocks and routes to the Admin Dashboard.
 - **Executive Dashboard:** Live metrics for total revenue, active orders, pending repair bookings, and registered customer count.
 - **Service Bookings Management:** View incoming repair bookings, update booking status (`confirmed`, `in_progress`, `completed`, `cancelled`), and record mechanic notes.
 - **Order Processing:** Update order fulfillment stages (`pending`, `confirmed`, `processing`, `shipped`, `delivered`, `cancelled`).
@@ -125,28 +126,20 @@ mechanical shop/
 │   ├── seed.py                    # Database seeding script for catalog & services
 │   └── migrations/                # Database schema migrations
 └── frontend/                      # Static Web Application
+    ├── index.html                 # Entry point redirecting to html/index.html
     ├── html/                      # Customer & Admin Web Pages
-    │   ├── index.html             # Homepage & service overview
-    │   ├── parts.html             # Spare parts catalog
+    │   ├── index.html             # Storefront homepage
+    │   ├── buy-parts.html         # Spare parts catalog
     │   ├── booking.html           # Service appointment booking
     │   ├── cart.html              # Customer cart
     │   ├── checkout.html          # Secure order checkout
-    │   ├── profile.html           # Customer dashboard & order history
-    │   ├── admin-login.html       # Administrator portal login
-    │   ├── admin.html             # Workshop administration dashboard
-    │   └── contact.html           # Customer contact form
-    ├── CSS/                       # Responsive stylesheets
-    │   ├── home.css, parts.css, booking.css, admin.css, etc.
-    ├── JAVASRIPT/                 # Frontend client logic
-    │   ├── api.js                 # Centralized API client (dynamic baseUrl, auth headers)
-    │   ├── login.js               # Customer auth flow
-    │   ├── booking.js             # Workshop booking client
-    │   ├── checkout.js            # Secure checkout client
-    │   ├── cart.js, parts.js, etc.
-    │   └── admin/
-    │       ├── api.js             # Admin API client with session management
-    │       └── admin.js           # Admin dashboard data rendering
-    └── images/                    # UI branding and product visuals
+    │   ├── service.html           # Mechanical services catalog
+    │   ├── contact.html           # Customer contact form
+    │   ├── login.html             # Unified Customer & Admin login
+    │   └── admin-panel.html       # Workshop administration dashboard
+    ├── css/                       # Responsive stylesheets (style.css, buy-parts.css, admin/, etc.)
+    ├── js/                        # Frontend client logic (api.js, main.js, cart.js, admin/, etc.)
+    └── images/                    # UI branding and product visuals (.webp)
 ```
 
 ---
@@ -499,11 +492,11 @@ server {
     }
 
     # Static CSS, JS, and Images
-    location /CSS/ {
-        alias /var/www/mahtomech/frontend/CSS/;
+    location /css/ {
+        alias /var/www/mahtomech/frontend/css/;
     }
-    location /JAVASRIPT/ {
-        alias /var/www/mahtomech/frontend/JAVASRIPT/;
+    location /js/ {
+        alias /var/www/mahtomech/frontend/js/;
     }
     location /images/ {
         alias /var/www/mahtomech/frontend/images/;

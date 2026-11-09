@@ -1,4 +1,4 @@
-// MahtoMech - Login Page Script
+// MahtoMech - Unified Login Page Script
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector('.login-card form');
@@ -6,11 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const rememberCheckbox = document.getElementById('remember');
     const forgotLink = document.querySelector('.forgot-link');
+    const registerLink = document.getElementById('registerLink');
     const googleBtn = document.querySelector('.sign-btn[title="Google Login"]');
     const phoneBtn = document.querySelector('.sign-btn[title="Phone Login"]');
     const submitBtn = loginForm ? loginForm.querySelector('.button-submit') : null;
+    const togglePassBtn = document.getElementById('togglePasswordBtn');
 
-    // 1. Remember Me saved email restoration
+    // 1. Password Visibility Toggle
+    if (togglePassBtn && passwordInput) {
+        togglePassBtn.addEventListener('click', () => {
+            const isPass = passwordInput.type === 'password';
+            passwordInput.type = isPass ? 'text' : 'password';
+            togglePassBtn.classList.toggle('fa-eye', !isPass);
+            togglePassBtn.classList.toggle('fa-eye-slash', isPass);
+        });
+    }
+
+    // 2. Remember Me saved email restoration
     try {
         const savedUser = localStorage.getItem('mm_saved_user');
         if (savedUser && emailInput) {
@@ -19,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     } catch (e) {}
 
-    // 2. Form Submission via Real API
+    // 3. Form Submission via Real API
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -56,9 +68,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const user = res.data?.user;
+                const token = res.data?.token;
+
                 if (user && user.role === 'ADMIN') {
+                    // Admin credentials detected -> save admin auth keys and redirect to Admin Panel
+                    try {
+                        localStorage.setItem('adminToken', token);
+                        localStorage.setItem('adminUser', JSON.stringify(user));
+                    } catch (e) {}
                     window.location.href = 'admin-panel.html';
                 } else {
+                    // Customer credentials -> ensure admin keys are cleared and redirect to Storefront
+                    try {
+                        localStorage.removeItem('adminToken');
+                        localStorage.removeItem('adminUser');
+                    } catch (e) {}
                     window.location.href = 'index.html';
                 }
             } catch (err) {
@@ -74,7 +98,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Social and Forgot Password buttons
+    // 4. Register Link Prompt
+    if (registerLink) {
+        registerLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const fullName = prompt('Enter your full name for new customer registration:');
+            if (!fullName) return;
+            const email = prompt('Enter your email address:');
+            if (!email) return;
+            const phone = prompt('Enter your 10-digit mobile number:');
+            if (!phone) return;
+            const password = prompt('Create a secure password (min 8 chars):');
+            if (!password) return;
+
+            try {
+                await window.MahtoMechAPI.auth.register({
+                    name: fullName,
+                    email: email,
+                    phone: phone,
+                    password: password
+                });
+                alert(`🎉 Registration Successful!\nWelcome to MahtoMech, ${fullName}!\nYou can now sign in with your credentials.`);
+                if (emailInput) emailInput.value = email;
+                if (passwordInput) passwordInput.value = password;
+            } catch (err) {
+                alert(`Registration Error: ${err.message || 'Failed to register account.'}`);
+            }
+        });
+    }
+
+    // 5. Social and Forgot Password buttons
     if (forgotLink) {
         forgotLink.addEventListener('click', (e) => {
             e.preventDefault();
