@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚗 MahtoMech — Mechanical Shop & Vehicle Parts Management Platform
 
 > **Robust, secure, and production-ready full-stack platform for automotive workshop bookings, genuine spare parts e-commerce, and centralized workshop administration.**
@@ -582,3 +583,7 @@ WantedBy=multi-user.target
 ## License & Ownership
 Copyright © 2026 **MahtoMech Mechanical Shop**. All rights reserved.  
 Developed and maintained for automotive service excellence.
+=======
+# mechanical-shop
+A full-stack mechanical shop and vehicle parts management system with service booking, parts catalog, shopping cart, order management, and admin dashboard.
+>>>>>>> 828b89a4da1b9de1d2b0616c574e5aa84328496a
